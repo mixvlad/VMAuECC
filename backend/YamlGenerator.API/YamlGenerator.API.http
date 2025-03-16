@@ -1,0 +1,6 @@
+@YamlGenerator.API_HostAddress = http://localhost:5272
+
+GET {{YamlGenerator.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

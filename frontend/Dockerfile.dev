@@ -1,0 +1,13 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY yaml-generator-frontend/package*.json ./
+
+RUN npm install --legacy-peer-deps
+
+COPY yaml-generator-frontend/ .
+
+EXPOSE 4200
+
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--poll", "500"] 
