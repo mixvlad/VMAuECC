@@ -10,10 +10,6 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:8283
       - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - ./backend:/app
-      - /app/bin
-      - /app/obj
 
   frontend:
     build:

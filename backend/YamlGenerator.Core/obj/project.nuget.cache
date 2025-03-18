@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "GR0vKMTKGa4=",
-  "success": true,
-  "projectFilePath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
+  "dgSpecHash": "92W5gA4+x58=",
+  "success": false,
+  "projectFilePath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Failed to retrieve information about 'YamlDotNet' from remote source 'https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.release/FindPackagesById()?id='YamlDotNet'&semVerLevel=2.0.0'.\n  nodename nor servname provided, or not known (repo.ptsecurity.ru:443)\n  nodename nor servname provided, or not known",
+      "libraryId": "YamlDotNet"
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Failed to retrieve information about 'YamlDotNet' from remote source 'https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.all/FindPackagesById()?id='YamlDotNet'&semVerLevel=2.0.0'.\n  nodename nor servname provided, or not known (repo.ptsecurity.ru:443)\n  nodename nor servname provided, or not known",
+      "libraryId": "YamlDotNet"
+    }
+  ]
 }

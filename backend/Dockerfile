@@ -15,4 +15,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 EXPOSE 8283
-ENTRYPOINT ["dotnet", "YamlGenerator.API.dll"] 
+ENTRYPOINT ["dotnet", "/app/YamlGenerator.API.dll"] 
