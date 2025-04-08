@@ -35,7 +35,6 @@
     "@angular/compiler-cli": "^17.3.0",
     "@types/jasmine": "~5.1.0",
     "@types/js-yaml": "^4.0.9",
-    "angular-eslint": "17.3.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.6",
