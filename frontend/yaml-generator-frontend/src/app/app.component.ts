@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   template: `
     <div class="app-container">
       <mat-toolbar color="primary">
@@ -12,19 +12,21 @@ import { Component } from '@angular/core';
       </div>
     </div>
   `,
-  styles: [`
-    .app-container {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .content {
-      flex: 1;
-      padding: 20px;
-      background-color: #f5f5f5;
-    }
-  `]
+  styles: [
+    `
+      .app-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .content {
+        flex: 1;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+    `,
+  ],
 })
 export class AppComponent {
-  title = 'YAML Generator';
+  title = "YAML Generator";
 }

@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0
+WORKDIR /app
+
+# Копируем только файлы проектов и восстанавливаем зависимости
+# Это позволит кэшировать слой с зависимостями
+COPY *.sln .
+COPY YamlGenerator.API/*.csproj ./YamlGenerator.API/
+COPY YamlGenerator.Core/*.csproj ./YamlGenerator.Core/
+COPY YamlGenerator.Tests/*.csproj ./YamlGenerator.Tests/
+RUN dotnet restore
+
+# Монтируем остальной код через volume в docker-compose.yml
+# вместо копирования в образ
+
+ENTRYPOINT ["dotnet", "watch", "--project", "YamlGenerator.API/YamlGenerator.API.csproj", "run", "--urls", "http://+:8283"]

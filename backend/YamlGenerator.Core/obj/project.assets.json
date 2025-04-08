@@ -1,47 +1,101 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "StyleCop.Analyzers/1.1.118": {
+        "type": "package"
+      },
+      "YamlDotNet/16.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/YamlDotNet.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/YamlDotNet.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "StyleCop.Analyzers/1.1.118": {
+      "sha512": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
+      "type": "package",
+      "path": "stylecop.analyzers/1.1.118",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "THIRD-PARTY-NOTICES.txt",
+        "analyzers/dotnet/cs/StyleCop.Analyzers.CodeFixes.dll",
+        "analyzers/dotnet/cs/StyleCop.Analyzers.dll",
+        "analyzers/dotnet/cs/de-DE/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/en-GB/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/es-MX/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/fr-FR/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/pl-PL/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/pt-BR/StyleCop.Analyzers.resources.dll",
+        "analyzers/dotnet/cs/ru-RU/StyleCop.Analyzers.resources.dll",
+        "stylecop.analyzers.1.1.118.nupkg.sha512",
+        "stylecop.analyzers.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "YamlDotNet/16.3.0": {
+      "sha512": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA==",
+      "type": "package",
+      "path": "yamldotnet/16.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "images/yamldotnet.png",
+        "lib/net47/YamlDotNet.dll",
+        "lib/net47/YamlDotNet.xml",
+        "lib/net6.0/YamlDotNet.dll",
+        "lib/net6.0/YamlDotNet.xml",
+        "lib/net8.0/YamlDotNet.dll",
+        "lib/net8.0/YamlDotNet.xml",
+        "lib/netstandard2.0/YamlDotNet.dll",
+        "lib/netstandard2.0/YamlDotNet.xml",
+        "lib/netstandard2.1/YamlDotNet.dll",
+        "lib/netstandard2.1/YamlDotNet.xml",
+        "yamldotnet.16.3.0.nupkg.sha512",
+        "yamldotnet.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "StyleCop.Analyzers >= 1.1.118",
       "YamlDotNet >= 16.3.0"
     ]
   },
   "packageFolders": {
-    "/Users/mikozlov/.nuget/packages/": {}
+    "C:\\Users\\mixa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj",
+      "projectUniqueName": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
       "projectName": "YamlGenerator.Core",
-      "projectPath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj",
-      "packagesPath": "/Users/mikozlov/.nuget/packages/",
-      "outputPath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/obj/",
+      "projectPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
+      "packagesPath": "C:\\Users\\mixa\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mikozlov/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mixa\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.all": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.release": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.contracts.release": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.contracts.snapshot": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.libraries.release": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.libraries.snapshot": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.microservices.release": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.microservices.snapshot": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.utilities.release": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.utilities.snapshot": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp9-tech": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp9-tech.snapshot": {},
-        "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/nuget-virtual": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
@@ -58,13 +112,18 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.200"
+      }
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "StyleCop.Analyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.1.118, )"
+          },
           "YamlDotNet": {
             "target": "Package",
             "version": "[16.3.0, )"
@@ -81,37 +140,13 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.14, 8.0.14]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.14, 8.0.14]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1301",
-      "level": "Error",
-      "message": "Failed to retrieve information about 'YamlDotNet' from remote source 'https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.release/FindPackagesById()?id='YamlDotNet'&semVerLevel=2.0.0'.\n  nodename nor servname provided, or not known (repo.ptsecurity.ru:443)\n  nodename nor servname provided, or not known",
-      "libraryId": "YamlDotNet"
-    },
-    {
-      "code": "NU1301",
-      "level": "Error",
-      "message": "Failed to retrieve information about 'YamlDotNet' from remote source 'https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.all/FindPackagesById()?id='YamlDotNet'&semVerLevel=2.0.0'.\n  nodename nor servname provided, or not known (repo.ptsecurity.ru:443)\n  nodename nor servname provided, or not known",
-      "libraryId": "YamlDotNet"
-    }
-  ]
+  }
 }

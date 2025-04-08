@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YamlGenerator.API</name>
+    </assembly>
+    <members>
+        <member name="T:YamlGenerator.API.Controllers.ControlTypesController">
+            <summary>
+            Контроллер для работы с типами контроля
+            </summary>
+        </member>
+        <member name="M:YamlGenerator.API.Controllers.ControlTypesController.#ctor(YamlGenerator.Core.Services.ControlTypeService)">
+            <summary>
+            Конструктор контроллера ControlTypesController
+            </summary>
+            <param name="controlTypeService">Сервис для работы с типами контроля</param>
+        </member>
+        <member name="M:YamlGenerator.API.Controllers.ControlTypesController.GetAllControlTypes">
+            <summary>
+            Получает все типы контроля для всех ОС
+            </summary>
+            <returns>Список типов контроля по ОС</returns>
+        </member>
+        <member name="M:YamlGenerator.API.Controllers.ControlTypesController.GetControlTypesByOs(System.String)">
+            <summary>
+            Получает типы контроля для указанной ОС
+            </summary>
+            <param name="osType">Тип ОС (unix/windows)</param>
+            <returns>Типы контроля для указанной ОС</returns>
+            <response code="200">Возвращает типы контроля для указанной ОС</response>
+            <response code="400">Если указан неподдерживаемый тип ОС</response>
+        </member>
+        <member name="T:YamlGenerator.API.Controllers.YamlController">
+            <summary>
+            Контроллер для генерации YAML-файлов
+            </summary>
+        </member>
+        <member name="M:YamlGenerator.API.Controllers.YamlController.#ctor(YamlGenerator.Core.Services.YamlGeneratorService)">
+            <summary>
+            Конструктор контроллера YamlController
+            </summary>
+            <param name="yamlGenerator">Сервис для генерации YAML</param>
+        </member>
+        <member name="M:YamlGenerator.API.Controllers.YamlController.GenerateYaml(YamlGenerator.Core.Models.CollectorConfig)">
+            <summary>
+            Генерирует YAML на основе предоставленной конфигурации
+            </summary>
+            <param name="config">Конфигурация сборщика данных</param>
+            <returns>Сгенерированный YAML в текстовом формате</returns>
+            <response code="200">Возвращает сгенерированный YAML</response>
+            <response code="400">Если произошла ошибка при генерации YAML</response>
+        </member>
+        <member name="M:YamlGenerator.API.Controllers.YamlController.GetAvailableGenMethods">
+            <summary>
+            Получает список доступных методов генерации
+            </summary>
+            <returns>Строка с доступными методами генерации</returns>
+        </member>
+    </members>
+</doc>

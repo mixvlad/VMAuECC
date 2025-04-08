@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="language-selector">
+    <button (click)="changeLanguage('en')" [class.active]="language === 'en'">
+      English
+    </button>
+    <button (click)="changeLanguage('ru')" [class.active]="language === 'ru'">
+      Русский
+    </button>
+  </div>
+
+  <h2>{{ osType === "unix" ? "Unix" : "Windows" }} Control Types</h2>
+
+  <div *ngIf="isLoading" class="loading">Loading control types...</div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div class="control-types-list" *ngIf="!isLoading && !error">
+    <div
+      class="control-type-card"
+      *ngFor="let controlType of controlTypes"
+      (click)="selectControlType(controlType.id)"
+    >
+      <h3>{{ controlType.name }}</h3>
+      <p>{{ controlType.description }}</p>
+    </div>
+  </div>
+
+  <button class="back-button" (click)="goBack()">Back</button>
+</div>

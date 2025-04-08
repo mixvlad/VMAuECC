@@ -1,21 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "92W5gA4+x58=",
-  "success": false,
-  "projectFilePath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj",
-  "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "NU1301",
-      "level": "Error",
-      "message": "Failed to retrieve information about 'YamlDotNet' from remote source 'https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.release/FindPackagesById()?id='YamlDotNet'&semVerLevel=2.0.0'.\n  nodename nor servname provided, or not known (repo.ptsecurity.ru:443)\n  nodename nor servname provided, or not known",
-      "libraryId": "YamlDotNet"
-    },
-    {
-      "code": "NU1301",
-      "level": "Error",
-      "message": "Failed to retrieve information about 'YamlDotNet' from remote source 'https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.all/FindPackagesById()?id='YamlDotNet'&semVerLevel=2.0.0'.\n  nodename nor servname provided, or not known (repo.ptsecurity.ru:443)\n  nodename nor servname provided, or not known",
-      "libraryId": "YamlDotNet"
-    }
-  ]
+  "dgSpecHash": "mgPN4Z7OQSc=",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mixa\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
+    "C:\\Users\\mixa\\.nuget\\packages\\yamldotnet\\16.3.0\\yamldotnet.16.3.0.nupkg.sha512"
+  ],
+  "logs": []
 }

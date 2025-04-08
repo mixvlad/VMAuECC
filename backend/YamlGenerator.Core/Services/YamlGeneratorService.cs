@@ -19,4 +19,5 @@ public class YamlGeneratorService
     {
         return _serializer.Serialize(config);
     }
-} 
+
+}

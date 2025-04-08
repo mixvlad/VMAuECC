@@ -1,12 +1,12 @@
-version: '3.8'
-
 services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "8283:8283"
+    volumes:
+      - ./backend:/app
     environment:
       - ASPNETCORE_URLS=http://+:8283
       - ASPNETCORE_ENVIRONMENT=Development
@@ -22,6 +22,6 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-    command: npm start
+    command: npm run start:docker
     depends_on:
-      - backend 
+      - backend

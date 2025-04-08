@@ -2,12 +2,19 @@ FROM node:18
 
 WORKDIR /app
 
+# Копируем package.json и package-lock.json
 COPY yaml-generator-frontend/package*.json ./
 
-RUN npm install --legacy-peer-deps
+# Устанавливаем зависимости
+RUN npm install
 
+# Копируем остальные файлы проекта
+# Примечание: в docker-compose.yml мы монтируем локальную директорию,
+# поэтому эта команда не нужна для разработки, но оставляем для полноты
 COPY yaml-generator-frontend/ .
 
+# Экспонируем порт
 EXPOSE 4200
 
-CMD ["npm", "start", "--", "--host", "0.0.0.0", "--poll", "500"] 
+# Команда запуска (будет переопределена в docker-compose.yml)
+CMD ["npm", "start"]

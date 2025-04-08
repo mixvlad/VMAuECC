@@ -1,46 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.API/YamlGenerator.API.csproj": {}
+    "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\YamlGenerator.API.csproj": {}
   },
   "projects": {
-    "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.API/YamlGenerator.API.csproj": {
+    "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\YamlGenerator.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.API/YamlGenerator.API.csproj",
+        "projectUniqueName": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\YamlGenerator.API.csproj",
         "projectName": "YamlGenerator.API",
-        "projectPath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.API/YamlGenerator.API.csproj",
-        "packagesPath": "/Users/mikozlov/.nuget/packages/",
-        "outputPath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.API/obj/",
+        "projectPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\YamlGenerator.API.csproj",
+        "packagesPath": "C:\\Users\\mixa\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mikozlov/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\mixa\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.all": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.contracts.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.contracts.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.libraries.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.libraries.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.microservices.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.microservices.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.utilities.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.utilities.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp9-tech": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp9-tech.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/nuget-virtual": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj": {
-                "projectPath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj"
+              "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj": {
+                "projectPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj"
               }
             }
           }
@@ -54,8 +41,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -65,9 +51,19 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[1.6.24, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.5.0, )"
             },
             "YamlDotNet": {
               "target": "Package",
@@ -85,20 +81,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.14, 8.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[8.0.14, 8.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.14, 8.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -107,40 +89,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj": {
+    "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj",
+        "projectUniqueName": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
         "projectName": "YamlGenerator.Core",
-        "projectPath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/YamlGenerator.Core.csproj",
-        "packagesPath": "/Users/mikozlov/.nuget/packages/",
-        "outputPath": "/Users/mikozlov/Projects/PT/VMAuECC/backend/YamlGenerator.Core/obj/",
+        "projectPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
+        "packagesPath": "C:\\Users\\mixa\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mikozlov/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\mixa\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.all": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/dotnet.packages.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.contracts.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.contracts.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.libraries.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.libraries.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.microservices.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.microservices.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.utilities.release": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp.core.utilities.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp9-tech": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/mp9-tech.snapshot": {},
-          "https://repo.ptsecurity.ru/artifactory/api/nuget/v3/nuget-virtual": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -157,13 +126,18 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            },
             "YamlDotNet": {
               "target": "Package",
               "version": "[16.3.0, )"
@@ -180,22 +154,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.14, 8.0.14]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.14, 8.0.14]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

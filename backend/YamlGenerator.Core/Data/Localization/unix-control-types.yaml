@@ -1,0 +1,63 @@
+file_directory_existence:
+  en:
+    name: "File/Directory Existence"
+    description: "This control type checks for the existence of a user-specified file or directory."
+  ru:
+    name: "Проверка существования файла/директории"
+    description: "Этот тип контроля проверяет существование указанного пользователем файла или директории."
+
+file_directory_permission:
+  en:
+    name: "File/Directory Permission"
+    description: "This control type checks permissions that are set on a user-specified file or directory."
+  ru:
+    name: "Проверка прав доступа к файлу/директории"
+    description: "Этот тип контроля проверяет права доступа, установленные на указанном пользователем файле или директории."
+
+file_content_check:
+  en:
+    name: "File Content Check"
+    description: "This control type checks the contents of a user-specified file."
+  ru:
+    name: "Проверка содержимого файла"
+    description: "Этот тип контроля проверяет содержимое указанного пользователем файла."
+
+file_integrity_check:
+  en:
+    name: "File Integrity Check"
+    description: "This control type checks the integrity a user-specified file."
+  ru:
+    name: "Проверка целостности файла"
+    description: "Этот тип контроля проверяет целостность указанного пользователем файла."
+
+unix_directory_search_check:
+  en:
+    name: "Unix Directory Search Check"
+    description: "This control type finds files and directories that match your search parameters (i.e. name, permissions, owner, etc)."
+  ru:
+    name: "Поиск по директории Unix"
+    description: "Этот тип контроля находит файлы и директории, соответствующие вашим параметрам поиска (имя, права доступа, владелец и т.д.)."
+
+directory_integrity_check:
+  en:
+    name: "Directory Integrity Check"
+    description: "This control type checks the integrity of Unix files at the directory level and reports hash based file integrity and snapshot updates."
+  ru:
+    name: "Проверка целостности директории"
+    description: "Этот тип контроля проверяет целостность файлов Unix на уровне директории и сообщает об обновлениях целостности файлов на основе хеша и снимков."
+
+file_content_check_agent_only:
+  en:
+    name: "File Content Check (Agent Only)"
+    description: "This control type checks the contents of a user-specified file (wildcard file search)."
+  ru:
+    name: "Проверка содержимого файла (только агент)"
+    description: "Этот тип контроля проверяет содержимое указанного пользователем файла (поиск файлов по шаблону)."
+
+script_result_check_agent_only:
+  en:
+    name: "Script Result Check (Agent Only)"
+    description: "This control type collects results of the Unix scripts provided by the user. For example: Lua, Perl, Python, Shell."
+  ru:
+    name: "Проверка результатов скрипта (только агент)"
+    description: "Этот тип контроля собирает результаты скриптов Unix, предоставленных пользователем. Например: Lua, Perl, Python, Shell."
