@@ -556,19 +556,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mixa\\.nuget\\packages\\": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\YamlGenerator.API.csproj",
+      "projectUniqueName": "/app/YamlGenerator.API/YamlGenerator.API.csproj",
       "projectName": "YamlGenerator.API",
-      "projectPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\YamlGenerator.API.csproj",
-      "packagesPath": "C:\\Users\\mixa\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.API\\obj\\",
+      "projectPath": "/app/YamlGenerator.API/YamlGenerator.API.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/app/YamlGenerator.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mixa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -580,8 +580,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj": {
-              "projectPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj"
+            "/app/YamlGenerator.Core/YamlGenerator.Core.csproj": {
+              "projectPath": "/app/YamlGenerator.Core/YamlGenerator.Core.csproj"
             }
           }
         }
@@ -643,7 +643,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

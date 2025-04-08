@@ -77,19 +77,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mixa\\.nuget\\packages\\": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
+      "projectUniqueName": "/app/YamlGenerator.Core/YamlGenerator.Core.csproj",
       "projectName": "YamlGenerator.Core",
-      "projectPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\YamlGenerator.Core.csproj",
-      "packagesPath": "C:\\Users\\mixa\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\PT\\VMAuECC\\backend\\YamlGenerator.Core\\obj\\",
+      "projectPath": "/app/YamlGenerator.Core/YamlGenerator.Core.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/app/YamlGenerator.Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mixa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -145,7 +145,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
