@@ -1,0 +1,68 @@
+# .NET Core
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+.vs/
+**/TestResults/
+*.dll
+*.pdb
+*.cache
+*.log
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vscode/
+*.sln.docstates
+*.userprefs
+*.usertasks
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+_ReSharper*/
+*.[Cc]ache
+*.bak
+*.swp
+*.pidb
+*.vspscc
+*.vssscc
+.builds
+
+# Angular/Frontend
+**/node_modules/
+**/dist/
+**/.angular/cache/
+**/.sass-cache/
+**/connect.lock
+**/coverage/
+**/npm-debug.log
+**/yarn-error.log
+**/.env
+**/.DS_Store
+
+# IDE specific files
+.idea/
+*.sln.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Misc
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
