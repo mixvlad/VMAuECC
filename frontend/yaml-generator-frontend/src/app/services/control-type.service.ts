@@ -8,7 +8,7 @@ import { environment } from "../../environments/environment";
   providedIn: "root",
 })
 export class ControlTypeService {
-  private apiUrl = `${environment.apiUrl}/api/Yaml`;
+  private apiUrl = `${environment.apiUrl}/api/ControlTypes`;
 
   constructor(private http: HttpClient) {}
 
@@ -17,13 +17,13 @@ export class ControlTypeService {
     language: string = "en",
   ): Observable<OsControlTypes> {
     return this.http.get<OsControlTypes>(
-      `${this.apiUrl}/GetAvailableGenMethods?osType=${osType}&language=${language}`,
+      `${this.apiUrl}/${osType}?language=${language}`,
     );
   }
 
   getAllControlTypes(language: string = "en"): Observable<OsControlTypes[]> {
     return this.http.get<OsControlTypes[]>(
-      `${this.apiUrl}/GetAvailableGenMethods?language=${language}`,
+      `${this.apiUrl}?language=${language}`,
     );
   }
 }

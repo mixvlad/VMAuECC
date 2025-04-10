@@ -25,13 +25,14 @@ public class ControlTypesController : ControllerBase
     /// <summary>
     /// Получает все типы контроля для всех ОС
     /// </summary>
+    /// <param name="language">Язык для локализации (по умолчанию "en")</param>
     /// <returns>Список типов контроля по ОС</returns>
     [HttpGet]
-    public ActionResult<List<OsControlTypes>> GetAllControlTypes()
+    public ActionResult<List<OsControlTypes>> GetAllControlTypes([FromQuery] string language = "en")
     {
         try
         {
-            var controlTypes = _controlTypeService.GetAllControlTypes();
+            var controlTypes = _controlTypeService.GetAllControlTypes(language);
             return Ok(controlTypes);
         }
         catch (Exception ex)
@@ -44,17 +45,18 @@ public class ControlTypesController : ControllerBase
     /// Получает типы контроля для указанной ОС
     /// </summary>
     /// <param name="osType">Тип ОС (unix/windows)</param>
+    /// <param name="language">Язык для локализации (по умолчанию "en")</param>
     /// <returns>Типы контроля для указанной ОС</returns>
     /// <response code="200">Возвращает типы контроля для указанной ОС</response>
     /// <response code="400">Если указан неподдерживаемый тип ОС</response>
     [HttpGet("{osType}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<OsControlTypes> GetControlTypesByOs(string osType)
+    public ActionResult<OsControlTypes> GetControlTypesByOs(string osType, [FromQuery] string language = "en")
     {
         try
         {
-            var controlTypes = _controlTypeService.GetControlTypesByOs(osType);
+            var controlTypes = _controlTypeService.GetControlTypesByOs(osType, language);
             return Ok(controlTypes);
         }
         catch (ArgumentException ex)

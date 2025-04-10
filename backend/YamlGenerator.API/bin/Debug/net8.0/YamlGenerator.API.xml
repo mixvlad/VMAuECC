@@ -15,17 +15,19 @@
             </summary>
             <param name="controlTypeService">Сервис для работы с типами контроля</param>
         </member>
-        <member name="M:YamlGenerator.API.Controllers.ControlTypesController.GetAllControlTypes">
+        <member name="M:YamlGenerator.API.Controllers.ControlTypesController.GetAllControlTypes(System.String)">
             <summary>
             Получает все типы контроля для всех ОС
             </summary>
+            <param name="language">Язык для локализации (по умолчанию "en")</param>
             <returns>Список типов контроля по ОС</returns>
         </member>
-        <member name="M:YamlGenerator.API.Controllers.ControlTypesController.GetControlTypesByOs(System.String)">
+        <member name="M:YamlGenerator.API.Controllers.ControlTypesController.GetControlTypesByOs(System.String,System.String)">
             <summary>
             Получает типы контроля для указанной ОС
             </summary>
             <param name="osType">Тип ОС (unix/windows)</param>
+            <param name="language">Язык для локализации (по умолчанию "en")</param>
             <returns>Типы контроля для указанной ОС</returns>
             <response code="200">Возвращает типы контроля для указанной ОС</response>
             <response code="400">Если указан неподдерживаемый тип ОС</response>
@@ -49,12 +51,6 @@
             <returns>Сгенерированный YAML в текстовом формате</returns>
             <response code="200">Возвращает сгенерированный YAML</response>
             <response code="400">Если произошла ошибка при генерации YAML</response>
-        </member>
-        <member name="M:YamlGenerator.API.Controllers.YamlController.GetAvailableGenMethods">
-            <summary>
-            Получает список доступных методов генерации
-            </summary>
-            <returns>Строка с доступными методами генерации</returns>
         </member>
     </members>
 </doc>

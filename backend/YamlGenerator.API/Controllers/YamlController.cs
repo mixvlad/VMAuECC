@@ -45,13 +45,4 @@ public class YamlController : ControllerBase
         }
     }
 
-    /// <summary>
-    /// Получает список доступных методов генерации
-    /// </summary>
-    /// <returns>Строка с доступными методами генерации</returns>
-    [HttpGet("GetAvailableGenMethods")]
-    public string GetAvailableGenMethods()
-    {
-        return "none";
-    }
 }
