@@ -1,93 +1,73 @@
 <div class="container">
-  <div class="header">
-    <button mat-icon-button (click)="goBack()">
-      <mat-icon>arrow_back</mat-icon>
+  <div class="back-button-container">
+    <button mat-button color="primary" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon> Back to Control Types
     </button>
-    <div *ngIf="isLoading" class="loading">Loading control type details...</div>
-
-    <div *ngIf="error" class="error">
-      {{ error }}
-    </div>
-
-    <div *ngIf="!isLoading && !error && selectedControlType">
-      <h2>{{ selectedControlType.name }}</h2>
-      <p>{{ selectedControlType.description }}</p>
-    </div>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-    <mat-form-field appearance="fill">
-      <mat-label>Элементы для сбора (через запятую)</mat-label>
-      <input
-        matInput
-        formControlName="collectItems"
-        placeholder="logs,metrics,files"
-      />
-    </mat-form-field>
+  <h2 *ngIf="controlTypeName">Configure: {{controlTypeName}}</h2>
+  <p *ngIf="controlTypeDescription" class="description">{{controlTypeDescription}}</p>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Целевой путь</mat-label>
-      <input
-        matInput
-        formControlName="targetPath"
-        placeholder="/path/to/collect"
-      />
-    </mat-form-field>
+  <div *ngIf="isLoading" class="loading">
+    <p>Loading...</p>
+  </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Интервал (секунды)</mat-label>
-      <input matInput type="number" formControlName="intervalSeconds" min="1" />
-    </mat-form-field>
+  <div *ngIf="error" class="error">
+    <p>{{error}}</p>
+  </div>
 
-    <mat-checkbox formControlName="includeSubdirectories">
-      Включать поддиректории
-    </mat-checkbox>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!isLoading && !error">
+    <!-- Dynamic parameters based on control type -->
+    <mat-card *ngIf="controlTypeParameters.length > 0">
+      <mat-card-header>
+        <mat-card-title>Control Type Parameters</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let param of controlTypeParameters">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{param.displayName}}</mat-label>
+            <input matInput [formControlName]="param.name" [placeholder]="'Enter ' + param.displayName.toLowerCase()">
+            <mat-hint *ngIf="param.description">{{param.description}}</mat-hint>
+            <mat-error *ngIf="form.get(param.name)?.hasError('required')">
+              {{param.displayName}} is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Шаблоны файлов (через запятую)</mat-label>
-      <input
-        matInput
-        formControlName="filePatterns"
-        placeholder="*.log,*.txt"
-      />
-    </mat-form-field>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Additional Configuration</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Custom Parameters</mat-label>
+          <textarea matInput formControlName="customParameters" placeholder="Enter custom parameters (JSON format)"></textarea>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Дополнительные параметры (key:value через запятую)</mat-label>
-      <input
-        matInput
-        formControlName="customParameters"
-        placeholder="param1:value1,param2:value2"
-      />
-    </mat-form-field>
-
-    <div class="buttons">
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!form.valid"
-      >
-        Сгенерировать YAML
-      </button>
-      <button
-        mat-raised-button
-        color="accent"
-        type="button"
-        (click)="downloadYaml()"
-        [disabled]="!generatedYaml"
-      >
-        Скачать YAML
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Generate YAML
       </button>
     </div>
   </form>
 
-  <mat-card *ngIf="generatedYaml" class="preview">
-    <mat-card-header>
-      <mat-card-title>Предпросмотр YAML</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <pre>{{ generatedYaml }}</pre>
-    </mat-card-content>
-  </mat-card>
+  <div *ngIf="generatedYaml" class="yaml-preview mt-20">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Generated YAML</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <pre>{{generatedYaml}}</pre>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="downloadYaml()">
+          <mat-icon>download</mat-icon> Download YAML
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

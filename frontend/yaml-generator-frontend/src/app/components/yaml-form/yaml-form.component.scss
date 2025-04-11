@@ -1,112 +1,60 @@
 .container {
-  max-width: 900px;
+  padding: 20px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
 }
 
-.header {
+.back-button-container {
+  margin-bottom: 20px;
+}
+
+.description {
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.checkbox-field {
+  margin: 10px 0 20px 0;
+}
+
+.button-container {
+  margin-top: 20px;
   display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
-
-  h1 {
-    margin-left: 1rem;
-    margin-bottom: 0;
-  }
+  justify-content: flex-end;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  mat-form-field {
-    width: 100%;
-
-    ::ng-deep {
-      .mat-mdc-text-field-wrapper {
-        padding: 0;
-        background-color: transparent;
-      }
-
-      .mat-mdc-form-field-flex {
-        padding: 20px;
-        background-color: transparent;
-      }
-
-      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-        background-color: transparent;
-      }
-
-      .mat-mdc-form-field-label {
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 15px;
-      }
-
-      .mat-mdc-input-element {
-        padding: 8px 0;
-        font-size: 15px;
-        color: rgba(0, 0, 0, 0.87);
-      }
-
-      .mdc-line-ripple::before {
-        border-bottom-color: rgba(0, 0, 0, 0.12);
-      }
-
-      .mdc-line-ripple::after {
-        border-bottom-color: #1976d2;
-      }
-    }
-  }
-
-  mat-checkbox {
-    margin: 8px 0;
-    font-size: 15px;
-    color: rgba(0, 0, 0, 0.87);
-  }
-
-  textarea {
-    min-height: 150px;
-    padding: 1rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    background-color: #f8f9fa;
-  }
-}
-
-.buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-
-  button {
-    padding: 0.75rem 1.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-}
-
-.preview {
-  margin-top: 2rem;
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+.yaml-preview {
   pre {
     background-color: #f5f5f5;
-    padding: 1rem;
+    padding: 15px;
     border-radius: 4px;
     overflow-x: auto;
     white-space: pre-wrap;
+    word-wrap: break-word;
   }
+}
+
+.loading, .error {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.error {
+  color: red;
+}
+
+mat-card {
+  margin-bottom: 20px;
+}
+
+mat-card-content {
+  padding: 16px;
 }

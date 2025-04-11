@@ -1,13 +1,12 @@
-# Use a newer Node.js version that meets Angular CLI requirements
-FROM node:18.19.1 as build
-
+# Build stage
+FROM node:22 AS build
 WORKDIR /app
-
 COPY yaml-generator-frontend/package*.json ./
-RUN npm install --force
+RUN npm install
 COPY yaml-generator-frontend/ .
 RUN npm run build
 
+# Production stage
 FROM nginx:alpine
 COPY --from=build /app/dist/yaml-generator-frontend /usr/share/nginx/html
 EXPOSE 80

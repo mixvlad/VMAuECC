@@ -1,152 +1,139 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
-import { YamlService } from "../../services/yaml.service";
-import { CollectorConfig } from "../../models/collector-config";
-import { ControlType } from "../../models/control-type";
-import { ControlTypeService } from "../../services/control-type.service";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ControlTypeService } from '../../services/control-type.service';
+import { YamlService } from '../../services/yaml.service';
+import { ControlTypeParameter, ControlTypeWithParameters } from '../../models/control-type';
 
 @Component({
-  selector: "app-yaml-form",
-  templateUrl: "./yaml-form.component.html",
-  styleUrls: ["./yaml-form.component.scss"],
+  selector: 'app-yaml-form',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSnackBarModule
+  ],
+  templateUrl: './yaml-form.component.html',
+  styleUrls: ['./yaml-form.component.scss']
 })
 export class YamlFormComponent implements OnInit {
-  form: FormGroup;
-  generatedYaml: string = "";
-  osType: string = "";
-  controlTypeId: string = "";
-  selectedControlType: ControlType | undefined;
+  controlTypeId: string = '';
+  osType: string = '';
+  controlTypeName: string = '';
+  controlTypeDescription: string = '';
+  controlTypeParameters: ControlTypeParameter[] = [];
+  form!: FormGroup;
+  generatedYaml: string = '';
   isLoading: boolean = false;
-  error: string | null = null;
+  error: string = '';
 
   constructor(
-    private fb: FormBuilder,
-    private yamlService: YamlService,
-    private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
+    private formBuilder: FormBuilder,
+    private yamlService: YamlService,
     private controlTypeService: ControlTypeService,
-  ) {
-    this.form = this.fb.group({
-      collectItems: ["", Validators.required],
-      targetPath: ["", Validators.required],
-      intervalSeconds: [60, [Validators.required, Validators.min(1)]],
-      includeSubdirectories: [false],
-      filePatterns: [""],
-      customParameters: [""],
-    });
-  }
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.osType = params["os"];
-      this.controlTypeId = params["controlTypeId"];
-      this.loadControlTypeDetails();
+    this.route.params.subscribe(params => {
+      this.controlTypeId = params['controlTypeId'];
+      this.osType = params['osType'];
+      this.loadControlType();
+    });
+
+    // Initialize form with just customParameters
+    this.form = this.formBuilder.group({
+      customParameters: ['']
     });
   }
 
-  loadControlTypeDetails(): void {
-    if (!this.osType || !this.controlTypeId) {
-      this.router.navigate(["/"]);
-      return;
-    }
-
+  loadControlType(): void {
     this.isLoading = true;
-    this.error = null;
-
-    // Получаем язык из localStorage или используем английский по умолчанию
-    const language = localStorage.getItem("preferredLanguage") || "en";
-
-    this.controlTypeService
-      .getControlTypesByOs(this.osType, language)
+    
+    this.controlTypeService.getControlType(this.osType, this.controlTypeId)
       .subscribe({
-        next: (data) => {
-          this.selectedControlType = data.controlTypes.find(
-            (ct: ControlType) => ct.id === this.controlTypeId,
-          );
-
-          if (!this.selectedControlType) {
-            this.router.navigate(["/control-type-selection", this.osType]);
-          }
-
+        next: (controlType: ControlTypeWithParameters) => {
+          this.controlTypeName = controlType.name;
+          this.controlTypeDescription = controlType.description;
+          this.controlTypeParameters = controlType.parameters;
+          
+          // Add dynamic form controls based on parameters
+          this.controlTypeParameters.forEach(param => {
+            const validators = param.required ? [Validators.required] : [];
+            this.form.addControl(param.name, this.formBuilder.control(param.defaultValue, validators));
+          });
+          
           this.isLoading = false;
         },
-        error: (err) => {
-          console.error("Error loading control type details:", err);
-          this.error = "Failed to load control type details. Please try again.";
+        error: (error) => {
+          this.error = 'Failed to load control type. Please try again.';
           this.isLoading = false;
-        },
+          console.error('Error loading control type:', error);
+        }
       });
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const formValue = this.form.value;
-      const config: CollectorConfig = {
-        osType: this.osType,
-        controlType: this.controlTypeId,
-        collectItems: formValue.collectItems
-          .split(",")
-          .map((item: string) => item.trim()),
-        targetPath: formValue.targetPath,
-        intervalSeconds: formValue.intervalSeconds,
-        includeSubdirectories: formValue.includeSubdirectories,
-        filePatterns: formValue.filePatterns
-          .split(",")
-          .map((pattern: string) => pattern.trim()),
-        customParameters: this.parseCustomParameters(
-          formValue.customParameters,
-        ),
-      };
+    if (this.form.invalid) {
+      return;
+    }
 
-      this.yamlService.generateYaml(config).subscribe({
+    this.isLoading = true;
+    this.error = '';
+
+    const formData = this.form.value;
+    
+    this.yamlService.generateYaml(formData)
+      .subscribe({
         next: (yaml) => {
           this.generatedYaml = yaml;
-          this.snackBar.open("YAML успешно сгенерирован", "Закрыть", {
-            duration: 3000,
-          });
+          this.isLoading = false;
         },
         error: (error) => {
-          this.snackBar.open("Ошибка при генерации YAML", "Закрыть", {
-            duration: 3000,
-          });
-          console.error("Error generating YAML:", error);
-        },
+          this.error = 'Failed to generate YAML. Please try again.';
+          this.isLoading = false;
+          console.error('Error generating YAML:', error);
+        }
       });
-    }
-  }
-
-  private parseCustomParameters(input: string): { [key: string]: string } {
-    const result: { [key: string]: string } = {};
-    if (!input) return result;
-
-    const pairs = input.split(",");
-    pairs.forEach((pair) => {
-      const [key, value] = pair.split(":").map((item) => item.trim());
-      if (key && value) {
-        result[key] = value;
-      }
-    });
-    return result;
   }
 
   downloadYaml(): void {
-    if (!this.generatedYaml) return;
+    if (!this.generatedYaml) {
+      return;
+    }
 
-    const blob = new Blob([this.generatedYaml], { type: "text/yaml" });
+    const blob = new Blob([this.generatedYaml], { type: 'text/yaml' });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = "collector-config.yaml";
+    a.download = `${this.controlTypeId}-config.yaml`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+
+    this.snackBar.open('YAML file downloaded successfully', 'Close', {
+      duration: 3000
+    });
   }
 
   goBack(): void {
-    this.router.navigate(["/control-type-selection", this.osType]);
+    this.router.navigate(['/control-types', this.osType]);
   }
 }

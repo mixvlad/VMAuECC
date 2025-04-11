@@ -23,6 +23,30 @@
   }
 }
 
+.back-button-container {
+  margin-bottom: 20px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.control-types-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.control-type-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .loading,
 .error {
   text-align: center;
@@ -30,5 +54,5 @@
 }
 
 .error {
-  color: #dc3545;
+  color: red;
 }

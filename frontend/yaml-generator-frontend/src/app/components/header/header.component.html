@@ -1,0 +1,12 @@
+<header class="app-header">
+    <div class="logo">VMAuECC</div>
+    <div class="language-selector">
+      <button (click)="changeLanguage('en')" [class.active]="currentLanguage === 'en'">
+        English
+      </button>
+      <button (click)="changeLanguage('ru')" [class.active]="currentLanguage === 'ru'">
+        Русский
+      </button>
+    </div>
+  </header>
+  

@@ -1,29 +1,24 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { OsControlTypes } from "../models/control-type";
-import { environment } from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ControlType, ControlTypeWithParameters, OsControlTypes } from '../models/control-type';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class ControlTypeService {
-  private apiUrl = `${environment.apiUrl}/api/ControlTypes`;
+  private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getControlTypesByOs(
-    osType: string,
-    language: string = "en",
-  ): Observable<OsControlTypes> {
-    return this.http.get<OsControlTypes>(
-      `${this.apiUrl}/${osType}?language=${language}`,
-    );
+  getControlTypes(osType: string, language: string = 'en'): Observable<OsControlTypes[]> {
+    return this.http.get<OsControlTypes[]>(`${this.apiUrl}/api/ControlTypes/${osType}?language=${language}`);
   }
 
-  getAllControlTypes(language: string = "en"): Observable<OsControlTypes[]> {
-    return this.http.get<OsControlTypes[]>(
-      `${this.apiUrl}?language=${language}`,
+  getControlType(osType: string, controlTypeId: string, language: string = 'en'): Observable<ControlTypeWithParameters> {
+    return this.http.get<ControlTypeWithParameters>(
+      `${this.apiUrl}/api/ControlTypes/detail/${controlTypeId}?osType=${osType}&language=${language}`
     );
   }
 }

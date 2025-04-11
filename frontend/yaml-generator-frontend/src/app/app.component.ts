@@ -1,32 +1,15 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
-  selector: "app-root",
-  template: `
-    <div class="app-container">
-      <mat-toolbar color="primary">
-        <span>YAML Generator</span>
-      </mat-toolbar>
-      <div class="content">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      .app-container {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-      .content {
-        flex: 1;
-        padding: 20px;
-        background-color: #f5f5f5;
-      }
-    `,
-  ],
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, HeaderComponent],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = "YAML Generator";
+  title = 'yaml-generator-frontend';
 }

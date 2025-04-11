@@ -45,4 +45,37 @@ public class ControlTypeService
             }
         };
     }
-}
+      public ControlTypeWithParameters GetControlTypeWithParameters(string osType, string controlTypeId, string language = "en")
+      {
+          // Get the basic control type info
+          var controlTypes = osType.ToLower() switch
+          {
+              "unix" or "linux" => _localizationService.GetControlTypes("unix", language),
+              "windows" => _localizationService.GetControlTypes("windows", language),
+              _ => throw new ArgumentException($"Unsupported OS type: {osType}. Supported types are 'unix' and 'windows'.")
+          };
+
+          var controlType = controlTypes.FirstOrDefault(ct => ct.Id == controlTypeId) 
+              ?? throw new KeyNotFoundException($"Control type with ID '{controlTypeId}' not found for OS '{osType}'");
+
+          // For now, all control types have the same parameter (Options)
+          return new ControlTypeWithParameters
+          {
+              Id = controlType.Id,
+              Name = controlType.Name,
+              Description = controlType.Description,
+              Parameters = new List<ControlTypeParameter>
+              {
+                  new ControlTypeParameter
+                  {
+                      Name = "options",
+                      DisplayName = "Options",
+                      Description = "Configuration options for this control type",
+                      Type = "string",
+                      Required = true,
+                      DefaultValue = ""
+                  }
+              }
+          };
+      }
+  }
