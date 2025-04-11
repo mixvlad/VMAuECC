@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlGenerator.Core.Models;
@@ -8,8 +9,8 @@ namespace YamlGenerator.Core.Services;
 public class LocalizationService
 {
     private readonly IDeserializer _deserializer;
-    private Dictionary<string, Dictionary<string, ControlType>> _unixControlTypes = new();
-    private Dictionary<string, Dictionary<string, ControlType>> _windowsControlTypes = new();
+    private List<ControlType> _unixControlTypes = new();
+    private List<ControlType> _windowsControlTypes = new();
 
     public LocalizationService()
     {
@@ -56,22 +57,21 @@ public class LocalizationService
         }
     }
 
-    private Dictionary<string, Dictionary<string, ControlType>> ConvertToControlTypes(
+    private List<ControlType> ConvertToControlTypes(
         Dictionary<string, Dictionary<string, Dictionary<string, string>>> rawData)
     {
-        var result = new Dictionary<string, Dictionary<string, ControlType>>();
+        var result = new List<ControlType>();
 
         foreach (var (controlId, languages) in rawData)
         {
-            result[controlId] = new Dictionary<string, ControlType>();
+            var controlType = new ControlType()
+            {
+                Id = controlId
+            };
+
 
             foreach (var (language, properties) in languages)
             {
-                var controlType = new ControlType
-                {
-                    Id = controlId
-                };
-
                 if (properties.TryGetValue("name", out var name))
                 {
                     controlType.Names[language] = name;
@@ -81,9 +81,9 @@ public class LocalizationService
                 {
                     controlType.Descriptions[language] = description;
                 }
-
-                result[controlId][language] = controlType;
             }
+
+            result.Add(controlType);
         }
 
         return result;
@@ -92,31 +92,20 @@ public class LocalizationService
 
     public List<LocalizedControlType> GetControlTypes(string osType, string language = "en")
     {
-        var localizedControlType = new List<LocalizedControlType>();
-        var translations = osType.ToLower() == "unix" ? _unixControlTypes : _windowsControlTypes;
+        var localizedControlTypes = new List<LocalizedControlType>();
+        var controlTypes = osType.ToLower() == "unix" ? _unixControlTypes : _windowsControlTypes;
 
-        foreach (var (id, langs) in translations)
+        foreach (var controlType in controlTypes)
         {
-            if (langs.TryGetValue(language, out var localizedType))
-            {
-                localizedControlType.Add(new LocalizedControlType
+            localizedControlTypes.Add(new LocalizedControlType
                 {
-                    Id = id,
-                    Name = localizedType.Name,
-                    Description = localizedType.Description
+                    Id = controlType.Id,
+                    Name = controlType.GetName(language),
+                    Description = controlType.GetDescription(language)
                 });
-            }
-            else if (langs.TryGetValue("en", out var defaultType)) // Fallback to English
-            {
-                localizedControlType.Add(new LocalizedControlType
-                {
-                    Id = id,
-                    Name = defaultType.Name,
-                    Description = defaultType.Description
-                });
-            }
+            
         }
 
-        return localizedControlType;
+        return localizedControlTypes;
     }
 }

@@ -9,9 +9,9 @@ public class ControlType
     public Dictionary<string, string> Descriptions { get; set; } = new();
 
     // Свойства для удобного доступа
-    public string Name => GetLocalizedValue(Names, "en");
+    public string GetName(string language = "en") => GetLocalizedValue(Names, language);
 
-    public string Description => GetLocalizedValue(Descriptions, "en");
+    public string GetDescription(string language = "en") => GetLocalizedValue(Descriptions, language);
 
     private string GetLocalizedValue(Dictionary<string, string> values, string language)
     {
