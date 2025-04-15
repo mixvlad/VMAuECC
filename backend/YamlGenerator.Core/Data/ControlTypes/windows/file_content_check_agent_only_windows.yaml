@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "File Content Check (Agent Only)"
     description: "This control type checks the contents of a user-specified file."

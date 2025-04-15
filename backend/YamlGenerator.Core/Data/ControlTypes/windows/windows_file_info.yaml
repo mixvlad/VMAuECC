@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "Windows File Information"
     description: "This control type collects and verifies metadata information about Windows files, such as version, company name, and other file properties."

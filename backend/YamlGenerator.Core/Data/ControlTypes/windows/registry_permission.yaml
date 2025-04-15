@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "Registry Permission"
     description: "This control type checks permissions that are set on a Windows registry key."

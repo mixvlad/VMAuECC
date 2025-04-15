@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "Windows Directory Search Check"
     description: "This control type finds Windows files and directories that match your search parameters (i.e. name, permissions, etc)."

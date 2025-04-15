@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "Directory Integrity Check"
     description: "This control type checks the integrity of Unix files at the directory level and reports hash based file integrity and snapshot updates."

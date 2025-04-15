@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "File/Directory Permission"
     description: "This control type checks permissions that are set on a user-specified file or directory."

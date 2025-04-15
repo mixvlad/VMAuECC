@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "WMI Query Check"
     description: "This control type executes the WMI(Windows Management Instrumentation) query."

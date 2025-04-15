@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "File/Directory Existence"
     description: "This control type checks for the existence of a user-specified file or directory."

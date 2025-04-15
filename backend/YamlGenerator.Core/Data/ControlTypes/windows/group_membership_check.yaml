@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "Group Membership Check"
     description: "This control type lists members of a local group."

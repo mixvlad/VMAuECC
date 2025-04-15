@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "Script Result Check (Agent Only)"
     description: "This control type collects results of the Unix scripts provided by the user. For example: Lua, Perl, Python, Shell."

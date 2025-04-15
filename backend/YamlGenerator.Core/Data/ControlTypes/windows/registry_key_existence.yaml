@@ -1,5 +1,4 @@
 localization:
-localization:
   en:
     name: "Registry Key Existence"
     description: "This control type checks for the existence of a user-specified Windows registry key."
