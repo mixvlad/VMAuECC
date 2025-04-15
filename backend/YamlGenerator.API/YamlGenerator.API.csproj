@@ -6,8 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- Добавляем генерацию XML-документации -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);1591</NoWarn> <!-- Отключаем предупреждения о недокументированных публичных членах -->
-    <CodeAnalysisRuleSet>$(SolutionDir)stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

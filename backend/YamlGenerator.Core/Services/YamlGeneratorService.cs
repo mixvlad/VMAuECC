@@ -64,7 +64,7 @@ public class YamlGeneratorService
     private string SelectTemplateResourceName(string controlTypeId)
     {
         // Использование словаря для маппинга типа контроля на имя ресурса шаблона
-        if (_templateResourceMap.TryGetValue(controlTypeId, out string resourceName))
+        if (_templateResourceMap.TryGetValue(controlTypeId, out string? resourceName))
         {
             return resourceName;
         }
@@ -108,14 +108,39 @@ public class YamlGeneratorService
             }
             
             using (var stream = assembly.GetManifestResourceStream(resourceName))
-            using (var reader = new StreamReader(stream))
             {
-                var yaml = reader.ReadToEnd();
-                var controlType = DeserializeControlType(yaml, controlTypeId);
-                controlTypes[controlTypeId] = controlType;
+                if (stream != null)
+                {
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var yaml = reader.ReadToEnd();
+                        var controlType = DeserializeControlType(yaml, controlTypeId);
+                        controlTypes[controlTypeId] = controlType;
+                    }
+                }
+                else
+                {
+                    // Handle the case where the resource stream is null
+                    Console.WriteLine($"Warning: Resource not found: {resourceName}");
+                }
             }
         }
         
         return controlTypes;
     }
+    private ControlType DeserializeControlType(string yamlContent, string controlTypeId)
+    {
+        var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(CamelCaseNamingConvention.Instance)
+            .Build();
+            
+        // Deserialize the YAML content directly to a ControlType object
+        var controlType = deserializer.Deserialize<ControlType>(yamlContent);
+        
+        // Set the ID from the parameter
+        controlType.Id = controlTypeId;
+
+        return controlType;
+    }
+    
 }
