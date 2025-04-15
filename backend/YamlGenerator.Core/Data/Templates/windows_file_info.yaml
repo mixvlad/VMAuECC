@@ -1,0 +1,25 @@
+$extractors:
+    CMDInfo:
+        $template: windows_file_info
+        $filepath: '%windir%\system32\cmd.exe'
+$loaders:
+    CMDMapping:
+    -   $template: mapping
+        $target: OperatingSystem.Windows.FileObject
+        $kind: scan
+        $parent: OperatingSystem.Windows.WindowsHost
+        $origin:
+            $template: get_extractor_path
+            $name: CMDInfo
+        $field_map:
+            Path: $row.Path
+            CompanyName: $row.CompanyName
+            FileDescription: $row.FileDescription
+            FileVersion: $row.FileVersion
+            FileVersionEx: $row.FileVersionEx
+            InternalName: $row.InternalName
+            LegalCopyright: $row.LegalCopyright
+            OriginalFilename: $row.OriginalFilename
+            ProductName: $row.ProductName
+            ProductVersion: $row.ProductVersion
+            ProductVersionEx: $row.ProductVersionEx

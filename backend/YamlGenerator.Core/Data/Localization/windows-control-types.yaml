@@ -109,3 +109,11 @@ script_result_check_agent_only_windows:
   ru:
     name: "Проверка результатов скрипта (только агент)"
     description: "Этот тип контроля собирает результаты скриптов Windows, предоставленных пользователем. Например: Powershell, Python."
+
+windows_file_info:
+  en:
+    name: "Windows File Information"
+    description: "This control type collects and verifies metadata information about Windows files, such as version, company name, and other file properties."
+  ru:
+    name: "Информация о файле Windows"
+    description: "Этот тип контроля собирает и проверяет метаданные о файлах Windows, такие как версия, название компании и другие свойства файла."

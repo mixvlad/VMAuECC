@@ -46,9 +46,7 @@ export class YamlService {
     }
     
     // Wrap the request data in a config object as expected by the backend
-    const request = {
-      config: requestData
-    };
+    const request = requestData;
     
     return this.http.post(`${this.apiUrl}/api/Yaml/generate`, request, { responseType: 'text' });
   }
