@@ -1,5 +1,5 @@
 <header class="app-header">
-    <div class="logo">VMAuECC</div>
+    <div class="logo" (click)="navigateToHome()" style="cursor: pointer;">VMAuECC</div>
     <div class="language-selector">
       <button (click)="changeLanguage('en')" [class.active]="currentLanguage === 'en'">
         English

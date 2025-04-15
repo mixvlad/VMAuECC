@@ -1,0 +1,19 @@
+{
+  "OS_SELECTION": {
+    "TITLE": "Select Operating System",
+    "WINDOWS_DESCRIPTION": "Choose this option to create YAML configuration for Windows",
+    "UNIX_DESCRIPTION": "Choose this option to create YAML configuration for Unix/Linux"
+  },
+  "YAML_FORM": {
+    "BACK_TO_CONTROL_TYPES": "Back to Control Types",
+    "CONFIGURE": "Configure",
+    "LOADING": "Loading...",
+    "CONTROL_TYPE_PARAMETERS": "Control Type Parameters",
+    "ENTER": "Enter",
+    "FIELD_REQUIRED": "{{field}} is required",
+    "GENERATING_YAML": "Generating YAML...",
+    "GENERATE_YAML": "Generate YAML",
+    "GENERATED_YAML": "Generated YAML",
+    "DOWNLOAD_YAML": "Download YAML"
+  }
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -10,9 +10,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule } from '@ngx-translate/core';
 import { ControlTypeService } from '../../services/control-type.service';
 import { YamlService } from '../../services/yaml.service';
 import { ControlTypeParameter, ControlTypeWithParameters } from '../../models/control-type';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-yaml-form',
@@ -27,13 +29,13 @@ import { ControlTypeParameter, ControlTypeWithParameters } from '../../models/co
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    TranslateModule
   ],  
   templateUrl: './yaml-form.component.html',
   styleUrls: ['./yaml-form.component.scss']
 })
-export class YamlFormComponent implements OnInit {
-  controlTypeId: string = '';
+export class YamlFormComponent implements OnInit {  controlTypeId: string = '';
   osType: string = '';
   controlTypeName: string = '';
   controlTypeDescription: string = '';
@@ -43,6 +45,7 @@ export class YamlFormComponent implements OnInit {
   isLoading: boolean = false;
   error: string = '';
   isGeneratingYaml: boolean = false;
+  currentLanguage: string = 'en';
 
   constructor(
     private route: ActivatedRoute,
@@ -50,7 +53,8 @@ export class YamlFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private yamlService: YamlService,
     private controlTypeService: ControlTypeService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private languageService: LanguageService
   ) { }
 
   ngOnInit(): void {
@@ -63,6 +67,10 @@ export class YamlFormComponent implements OnInit {
     // Initialize form without customParameters
     this.form = this.formBuilder.group({
       // Only include other form controls here, not customParameters
+    });
+
+    this.languageService.language$.subscribe(lang => {
+      this.currentLanguage = lang;
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { LanguageService } from '../../services/language.service';
 export class HeaderComponent implements OnInit {
   currentLanguage: string = 'en';
 
-  constructor(private languageService: LanguageService) { }
+  constructor(private languageService: LanguageService, private router: Router) { }
 
   ngOnInit(): void {
     this.languageService.language$.subscribe(lang => {
@@ -19,5 +20,9 @@ export class HeaderComponent implements OnInit {
 
   changeLanguage(lang: string): void {
     this.languageService.changeLanguage(lang);
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
   }
 }

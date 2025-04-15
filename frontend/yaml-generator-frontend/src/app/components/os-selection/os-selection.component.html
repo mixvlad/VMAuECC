@@ -1,15 +1,15 @@
 <div class="container">
-  <h1>Выберите операционную систему</h1>
+  <h1>{{ 'OS_SELECTION.TITLE' | translate }}</h1>
 
   <div class="os-selection">
     <div class="os-card" (click)="selectOs('windows')">
       <h2>Windows</h2>
-      <p>Выберите эту опцию для создания YAML-конфигурации для Windows</p>
+      <p>{{ 'OS_SELECTION.WINDOWS_DESCRIPTION' | translate }}</p>
     </div>
 
     <div class="os-card" (click)="selectOs('unix')">
       <h2>Unix/Linux</h2>
-      <p>Выберите эту опцию для создания YAML-конфигурации для Unix/Linux</p>
+      <p>{{ 'OS_SELECTION.UNIX_DESCRIPTION' | translate }}</p>
     </div>
   </div>
 </div>

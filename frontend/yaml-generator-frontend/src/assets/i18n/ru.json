@@ -1,0 +1,19 @@
+{
+  "OS_SELECTION": {
+    "TITLE": "Выберите операционную систему",
+    "WINDOWS_DESCRIPTION": "Выберите эту опцию для создания YAML-конфигурации для Windows",
+    "UNIX_DESCRIPTION": "Выберите эту опцию для создания YAML-конфигурации для Unix/Linux"
+  },
+  "YAML_FORM": {
+    "BACK_TO_CONTROL_TYPES": "Вернуться к типам контроля",
+    "CONFIGURE": "Настройка",
+    "LOADING": "Загрузка...",
+    "CONTROL_TYPE_PARAMETERS": "Параметры типа контроля",
+    "ENTER": "Введите",
+    "FIELD_REQUIRED": "{{field}} обязательно для заполнения",
+    "GENERATING_YAML": "Генерация YAML...",
+    "GENERATE_YAML": "Сгенерировать YAML",
+    "GENERATED_YAML": "Сгенерированный YAML",
+    "DOWNLOAD_YAML": "Скачать YAML"
+  }
+}

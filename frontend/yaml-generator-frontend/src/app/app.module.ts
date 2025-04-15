@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Material imports
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,9 +18,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
-// Import your other components here
 import { ControlTypeSelectionComponent } from './components/control-type-selection/control-type-selection.component';
-// Import other components as needed
+import { OsSelectionComponent } from './components/os-selection/os-selection.component';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -31,12 +37,21 @@ import { ControlTypeSelectionComponent } from './components/control-type-selecti
     RouterModule.forRoot([
       // Define your routes here
       { path: 'control-types/:osType', component: ControlTypeSelectionComponent },
-      // Add other routes
+      { path: '', component: OsSelectionComponent },
     ]),
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    // Configure TranslateModule
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+    }),
     // Material modules
     MatToolbarModule,
     MatFormFieldModule,

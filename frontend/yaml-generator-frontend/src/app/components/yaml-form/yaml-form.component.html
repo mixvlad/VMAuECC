@@ -1,15 +1,15 @@
 <div class="container">
   <div class="back-button-container">
     <button mat-button color="primary" (click)="goBack()">
-      <mat-icon>arrow_back</mat-icon> Back to Control Types
+      <mat-icon>arrow_back</mat-icon> {{ 'YAML_FORM.BACK_TO_CONTROL_TYPES' | translate }}
     </button>
   </div>
 
-  <h2 *ngIf="controlTypeName">Configure: {{controlTypeName}}</h2>
+  <h2 *ngIf="controlTypeName">{{ 'YAML_FORM.CONFIGURE' | translate }}: {{controlTypeName}}</h2>
   <p *ngIf="controlTypeDescription" class="description">{{controlTypeDescription}}</p>
 
   <div *ngIf="isLoading" class="loading">
-    <p>Loading...</p>
+    <p>{{ 'YAML_FORM.LOADING' | translate }}</p>
   </div>
 
   <div *ngIf="error" class="error">
@@ -20,16 +20,16 @@
     <!-- Dynamic parameters based on control type -->
     <mat-card *ngIf="controlTypeParameters.length > 0">
       <mat-card-header>
-        <mat-card-title>Control Type Parameters</mat-card-title>
+        <mat-card-title>{{ 'YAML_FORM.CONTROL_TYPE_PARAMETERS' | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div *ngFor="let param of controlTypeParameters">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>{{param.displayName}}</mat-label>
-            <input matInput [formControlName]="param.name" [placeholder]="'Enter ' + param.displayName.toLowerCase()">
+            <input matInput [formControlName]="param.name" [placeholder]="'YAML_FORM.ENTER' | translate | lowercase + ' ' + param.displayName.toLowerCase()">
             <mat-hint *ngIf="param.description">{{param.description}}</mat-hint>
             <mat-error *ngIf="form.get(param.name)?.hasError('required')">
-              {{param.displayName}} is required
+              {{ 'YAML_FORM.FIELD_REQUIRED' | translate: { field: param.displayName } }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -38,13 +38,13 @@
     <!-- Добавим индикатор загрузки при генерации YAML -->
     <div *ngIf="isGeneratingYaml" class="loading-overlay">
       <mat-spinner diameter="50"></mat-spinner>
-      <p>Generating YAML...</p>
+      <p>{{ 'YAML_FORM.GENERATING_YAML' | translate }}</p>
     </div>
 
     <!-- Улучшим кнопку генерации -->
     <div class="button-container">
       <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || isGeneratingYaml">
-        <mat-icon>code</mat-icon> Generate YAML
+        <mat-icon>code</mat-icon> {{ 'YAML_FORM.GENERATE_YAML' | translate }}
       </button>
     </div>
   </form>
@@ -52,14 +52,14 @@
   <div *ngIf="generatedYaml" class="yaml-preview mt-20">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Generated YAML</mat-card-title>
+        <mat-card-title>{{ 'YAML_FORM.GENERATED_YAML' | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <pre>{{generatedYaml}}</pre>
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="accent" (click)="downloadYaml()">
-          <mat-icon>download</mat-icon> Download YAML
+          <mat-icon>download</mat-icon> {{ 'YAML_FORM.DOWNLOAD_YAML' | translate }}
         </button>
       </mat-card-actions>
     </mat-card>
