@@ -1,0 +1,43 @@
+localization:
+localization:
+  en:
+    name: "File/Directory Permission"
+    description: "This control type checks permissions that are set on a user-specified file or directory."
+  ru:
+    name: "Проверка прав доступа к файлу/директории"
+    description: "Этот тип контроля проверяет права доступа, установленные на указанном пользователем файле или директории."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "C:\\Windows\\System32\\drivers\\etc\\hosts"
+    localization:
+      en:
+        displayName: "File/Directory Path"
+        description: "The path to the file or directory to check permissions"
+      ru:
+        displayName: "Путь к файлу/директории"
+        description: "Путь к файлу или директории для проверки прав доступа"
+  - name: "principal"
+    type: "string"
+    required: false
+    defaultValue: "Administrators"
+    localization:
+      en:
+        displayName: "Principal"
+        description: "The user or group to check permissions for (e.g. Administrators, SYSTEM)"
+      ru:
+        displayName: "Субъект"
+        description: "Пользователь или группа для проверки прав доступа (например, Administrators, SYSTEM)"
+  - name: "expectedRights"
+    type: "string"
+    required: false
+    defaultValue: "FullControl"
+    localization:
+      en:
+        displayName: "Expected Rights"
+        description: "The expected access rights (e.g. FullControl, Read, Write)"
+      ru:
+        displayName: "Ожидаемые права"
+        description: "Ожидаемые права доступа (например, FullControl, Read, Write)"
+

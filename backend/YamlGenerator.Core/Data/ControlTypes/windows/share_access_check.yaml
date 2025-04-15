@@ -1,0 +1,43 @@
+localization:
+localization:
+  en:
+    name: "Share Access Check"
+    description: "This control type checks for the share permissions and the directory permissions."
+  ru:
+    name: "Проверка доступа к общим ресурсам"
+    description: "Этот тип контроля проверяет разрешения общего доступа и разрешения директории."
+parameters:
+  - name: "shareName"
+    type: "string"
+    required: true
+    defaultValue: "C$"
+    localization:
+      en:
+        displayName: "Share Name"
+        description: "The name of the share to check permissions"
+      ru:
+        displayName: "Имя общего ресурса"
+        description: "Имя общего ресурса для проверки разрешений"
+  - name: "principal"
+    type: "string"
+    required: false
+    defaultValue: "Everyone"
+    localization:
+      en:
+        displayName: "Principal"
+        description: "The user or group to check permissions for (e.g. Everyone, Administrators)"
+      ru:
+        displayName: "Субъект"
+        description: "Пользователь или группа для проверки прав доступа (например, Everyone, Administrators)"
+  - name: "expectedShareRights"
+    type: "string"
+    required: false
+    defaultValue: "Read"
+    localization:
+      en:
+        displayName: "Expected Share Rights"
+        description: "The expected share access rights (e.g. Read, Change, Full Control)"
+      ru:
+        displayName: "Ожидаемые права общего доступа"
+        description: "Ожидаемые права доступа к общему ресурсу (например, Read, Change, Full Control)"
+

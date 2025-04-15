@@ -1,0 +1,32 @@
+localization:
+localization:
+  en:
+    name: "File/Directory Existence"
+    description: "This control type checks for the existence of a user-specified file or directory."
+  ru:
+    name: "Проверка существования файла/директории"
+    description: "Этот тип контроля проверяет существование указанного пользователем файла или директории."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "/etc/passwd"
+    localization:
+      en:
+        displayName: "File/Directory Path"
+        description: "The path to the file or directory to check for existence"
+      ru:
+        displayName: "Путь к файлу/директории"
+        description: "Путь к файлу или директории, существование которых нужно проверить"
+  - name: "recursive"
+    type: "boolean"
+    required: false
+    defaultValue: "false"
+    localization:
+      en:
+        displayName: "Check Recursively"
+        description: "Whether to check subdirectories recursively"
+      ru:
+        displayName: "Проверять рекурсивно"
+        description: "Проверять ли поддиректории рекурсивно"
+

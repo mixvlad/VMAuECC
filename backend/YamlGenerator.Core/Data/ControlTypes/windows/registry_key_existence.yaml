@@ -1,0 +1,21 @@
+localization:
+localization:
+  en:
+    name: "Registry Key Existence"
+    description: "This control type checks for the existence of a user-specified Windows registry key."
+  ru:
+    name: "Проверка существования ключа реестра"
+    description: "Этот тип контроля проверяет существование указанного пользователем ключа реестра Windows."
+parameters:
+  - name: "keyPath"
+    type: "string"
+    required: true
+    defaultValue: "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+    localization:
+      en:
+        displayName: "Registry Key Path"
+        description: "The full path to the registry key to check for existence"
+      ru:
+        displayName: "Путь к ключу реестра"
+        description: "Полный путь к ключу реестра, существование которого нужно проверить"
+

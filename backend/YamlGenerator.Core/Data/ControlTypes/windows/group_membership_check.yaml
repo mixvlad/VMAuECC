@@ -1,0 +1,43 @@
+localization:
+localization:
+  en:
+    name: "Group Membership Check"
+    description: "This control type lists members of a local group."
+  ru:
+    name: "Проверка членства в группе"
+    description: "Этот тип контроля перечисляет членов локальной группы."
+parameters:
+  - name: "groupName"
+    type: "string"
+    required: true
+    defaultValue: "Administrators"
+    localization:
+      en:
+        displayName: "Group Name"
+        description: "The name of the local group to check membership"
+      ru:
+        displayName: "Имя группы"
+        description: "Имя локальной группы для проверки членства"
+  - name: "expectedMembers"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Members"
+        description: "Comma-separated list of expected group members (leave empty to just list members)"
+      ru:
+        displayName: "Ожидаемые участники"
+        description: "Список ожидаемых участников группы через запятую (оставьте пустым, чтобы просто перечислить участников)"
+  - name: "excludeMembers"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Exclude Members"
+        description: "Comma-separated list of members that should not be in the group"
+      ru:
+        displayName: "Исключить участников"
+        description: "Список участников через запятую, которых не должно быть в группе"
+

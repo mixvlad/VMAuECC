@@ -8,6 +8,9 @@ public class ControlType
 
     public Dictionary<string, string> Descriptions { get; set; } = new();
 
+    // Add Parameters property
+    public List<ParameterDefinition> Parameters { get; set; } = new();
+
     // Свойства для удобного доступа
     public string GetName(string language = "en") => GetLocalizedValue(Names, language);
 
@@ -23,6 +26,22 @@ public class ControlType
         // Возвращаем английский вариант по умолчанию
         return values.TryGetValue("en", out var defaultValue) ? defaultValue : string.Empty;
     }
+}
+
+// Add new classes for parameter definitions
+public class ParameterDefinition
+{
+    public string Name { get; set; } = string.Empty;
+    public string Type { get; set; } = "string";
+    public bool Required { get; set; }
+    public string DefaultValue { get; set; } = string.Empty;
+    public Dictionary<string, ParameterLocalization> Localization { get; set; } = new();
+}
+
+public class ParameterLocalization
+{
+    public string DisplayName { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }
 
 public class OsControlTypes

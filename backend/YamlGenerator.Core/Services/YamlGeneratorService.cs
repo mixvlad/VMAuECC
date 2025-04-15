@@ -22,6 +22,7 @@ public class YamlGeneratorService
         {
             { "windows_file_info", "YamlGenerator.Core.Data.Templates.windows_file_info.yaml" },
             { "file_content_check", "YamlGenerator.Core.Data.Templates.shell_template.yaml" },
+            { "file_integrity_check", "YamlGenerator.Core.Data.Templates.unix_shell_hash.yaml" },
             
             // Можно легко добавить новые маппинги здесь
         };
@@ -44,11 +45,21 @@ public class YamlGeneratorService
         using var reader = new StreamReader(stream);
         string templateContent = reader.ReadToEnd();
         
-        // Здесь можно добавить обработку шаблона с параметрами из config
-        // Например, заменить плейсхолдеры на значения из config.Parameters
-        
-        return templateContent;
+        return ProcessTemplate(templateContent, config);
     }
+
+    // В YamlGeneratorService.cs
+    private string ProcessTemplate(string template, CollectorConfig config)
+    {
+        // Заменяем переменные из параметров
+        foreach (var param in config.Parameters)
+        {
+            template = template.Replace($"{{{{{param.Key}}}}}", param.Value);
+        }
+        
+        return template;
+    }
+
     
     private string SelectTemplateResourceName(string controlTypeId)
     {
@@ -72,5 +83,39 @@ public class YamlGeneratorService
             .ToList();
             
         return resourceNames;
+    }
+
+    // Метод для загрузки всех доступных типов контроля
+    private Dictionary<string, ControlType> LoadControlTypes()
+    {
+        var controlTypes = new Dictionary<string, ControlType>();
+        var assembly = Assembly.GetExecutingAssembly();
+        
+        // Ищем все YAML файлы в подпапках ControlTypes
+        var resourceNames = assembly.GetManifestResourceNames()
+            .Where(name => name.StartsWith("YamlGenerator.Core.Data.ControlTypes.") && 
+                           name.EndsWith(".yaml"));
+        
+        foreach (var resourceName in resourceNames)
+        {
+            // Извлекаем ID типа контроля из имени файла
+            string controlTypeId = Path.GetFileNameWithoutExtension(resourceName);
+            
+            // Если файл находится в подпапке, извлекаем только имя файла
+            if (controlTypeId.Contains("."))
+            {
+                controlTypeId = controlTypeId.Split('.').Last();
+            }
+            
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            using (var reader = new StreamReader(stream))
+            {
+                var yaml = reader.ReadToEnd();
+                var controlType = DeserializeControlType(yaml, controlTypeId);
+                controlTypes[controlTypeId] = controlType;
+            }
+        }
+        
+        return controlTypes;
     }
 }

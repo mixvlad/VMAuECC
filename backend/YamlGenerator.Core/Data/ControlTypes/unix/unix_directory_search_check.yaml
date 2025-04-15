@@ -1,0 +1,76 @@
+localization:
+localization:
+  en:
+    name: "Unix Directory Search Check"
+    description: "This control type finds files and directories that match your search parameters (i.e. name, permissions, owner, etc)."
+  ru:
+    name: "Поиск по директории Unix"
+    description: "Этот тип контроля находит файлы и директории, соответствующие вашим параметрам поиска (имя, права доступа, владелец и т.д.)."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "/etc"
+    localization:
+      en:
+        displayName: "Base Directory"
+        description: "The base directory to start the search from"
+      ru:
+        displayName: "Базовая директория"
+        description: "Базовая директория, с которой начинается поиск"
+  - name: "pattern"
+    type: "string"
+    required: false
+    defaultValue: "*"
+    localization:
+      en:
+        displayName: "File Pattern"
+        description: "Glob pattern to match files (e.g. *.conf)"
+      ru:
+        displayName: "Шаблон файлов"
+        description: "Шаблон для сопоставления файлов (например, *.conf)"
+  - name: "recursive"
+    type: "boolean"
+    required: false
+    defaultValue: "true"
+    localization:
+      en:
+        displayName: "Recursive Search"
+        description: "Whether to search subdirectories recursively"
+      ru:
+        displayName: "Рекурсивный поиск"
+        description: "Искать ли в поддиректориях рекурсивно"
+  - name: "maxDepth"
+    type: "integer"
+    required: false
+    defaultValue: "10"
+    localization:
+      en:
+        displayName: "Maximum Depth"
+        description: "Maximum directory depth for recursive search"
+      ru:
+        displayName: "Максимальная глубина"
+        description: "Максимальная глубина директорий для рекурсивного поиска"
+  - name: "permissions"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Permissions Filter"
+        description: "Filter files by permissions (octal format, e.g. 644)"
+      ru:
+        displayName: "Фильтр по правам доступа"
+        description: "Фильтровать файлы по правам доступа (восьмеричный формат, например, 644)"
+  - name: "owner"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Owner Filter"
+        description: "Filter files by owner username"
+      ru:
+        displayName: "Фильтр по владельцу"
+        description: "Фильтровать файлы по имени пользователя-владельца"
+

@@ -12,7 +12,4 @@ public class CollectorConfig
     
     [JsonPropertyName("parameters")]
     public Dictionary<string, string> Parameters { get; set; } = new Dictionary<string, string>();
-    
-    [JsonPropertyName("customParameters")]
-    public Dictionary<string, string> CustomParameters { get; set; } = new Dictionary<string, string>();
 }

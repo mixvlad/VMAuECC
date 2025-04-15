@@ -1,0 +1,75 @@
+localization:
+localization:
+  en:
+    name: "Windows File Information"
+    description: "This control type collects and verifies metadata information about Windows files, such as version, company name, and other file properties."
+  ru:
+    name: "Информация о файле Windows"
+    description: "Этот тип контроля собирает и проверяет метаданные о файлах Windows, такие как версия, название компании и другие свойства файла."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "C:\\Windows\\System32\\kernel32.dll"
+    localization:
+      en:
+        displayName: "File Path"
+        description: "The path to the file to check information"
+      ru:
+        displayName: "Путь к файлу"
+        description: "Путь к файлу для проверки информации"
+  - name: "expectedVersion"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Version"
+        description: "The expected file version (leave empty to just collect the version)"
+      ru:
+        displayName: "Ожидаемая версия"
+        description: "Ожидаемая версия файла (оставьте пустым, чтобы просто собрать версию)"
+  - name: "expectedCompany"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Company"
+        description: "The expected company name (leave empty to just collect the company name)"
+      ru:
+        displayName: "Ожидаемая компания"
+        description: "Ожидаемое название компании (оставьте пустым, чтобы просто собрать название компании)"
+  - name: "expectedProduct"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Product"
+        description: "The expected product name (leave empty to just collect the product name)"
+      ru:
+        displayName: "Ожидаемый продукт"
+        description: "Ожидаемое название продукта (оставьте пустым, чтобы просто собрать название продукта)"
+  - name: "expectedDescription"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Description"
+        description: "The expected file description (leave empty to just collect the description)"
+      ru:
+        displayName: "Ожидаемое описание"
+        description: "Ожидаемое описание файла (оставьте пустым, чтобы просто собрать описание)"
+  - name: "expectedDigitalSignature"
+    type: "boolean"
+    required: false
+    defaultValue: "true"
+    localization:
+      en:
+        displayName: "Expect Digital Signature"
+        description: "Whether the file should be digitally signed"
+      ru:
+        displayName: "Ожидать цифровую подпись"
+        description: "Должен ли файл быть подписан цифровой подписью"

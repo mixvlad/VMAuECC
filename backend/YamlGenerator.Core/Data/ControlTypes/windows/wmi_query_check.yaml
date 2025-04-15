@@ -1,0 +1,43 @@
+localization:
+localization:
+  en:
+    name: "WMI Query Check"
+    description: "This control type executes the WMI(Windows Management Instrumentation) query."
+  ru:
+    name: "Проверка WMI-запроса"
+    description: "Этот тип контроля выполняет запрос WMI (Windows Management Instrumentation)."
+parameters:
+  - name: "query"
+    type: "text"
+    required: true
+    defaultValue: "SELECT * FROM Win32_OperatingSystem"
+    localization:
+      en:
+        displayName: "WMI Query"
+        description: "The WMI query to execute"
+      ru:
+        displayName: "WMI-запрос"
+        description: "WMI-запрос для выполнения"
+  - name: "namespace"
+    type: "string"
+    required: false
+    defaultValue: "root\\cimv2"
+    localization:
+      en:
+        displayName: "WMI Namespace"
+        description: "The WMI namespace to query (e.g. root\\cimv2, root\\SecurityCenter2)"
+      ru:
+        displayName: "Пространство имен WMI"
+        description: "Пространство имен WMI для запроса (например, root\\cimv2, root\\SecurityCenter2)"
+  - name: "property"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Property Filter"
+        description: "Specific property to filter results (leave empty to return all properties)"
+      ru:
+        displayName: "Фильтр свойств"
+        description: "Конкретное свойство для фильтрации результатов (оставьте пустым, чтобы вернуть все свойства)"
+

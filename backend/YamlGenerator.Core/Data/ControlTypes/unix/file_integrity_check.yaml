@@ -1,0 +1,43 @@
+localization:
+localization:
+  en:
+    name: "File Integrity Check"
+    description: "This control type checks the integrity a user-specified file."
+  ru:
+    name: "Проверка целостности файла"
+    description: "Этот тип контроля проверяет целостность указанного пользователем файла."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "/etc/passwd"
+    localization:
+      en:
+        displayName: "File Path"
+        description: "The path to the file to check integrity"
+      ru:
+        displayName: "Путь к файлу"
+        description: "Путь к файлу, целостность которого нужно проверить"
+  - name: "expectedHash"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Hash"
+        description: "The expected hash value of the file (leave empty to just collect the hash)"
+      ru:
+        displayName: "Ожидаемый хеш"
+        description: "Ожидаемое значение хеша файла (оставьте пустым, чтобы просто собрать хеш)"
+  - name: "algorithm"
+    type: "string"
+    required: false
+    defaultValue: "sha256"
+    localization:
+      en:
+        displayName: "Hash Algorithm"
+        description: "The algorithm to use for hashing (md5, sha1, sha256, sha512)"
+      ru:
+        displayName: "Алгоритм хеширования"
+        description: "Алгоритм для хеширования (md5, sha1, sha256, sha512)"
+

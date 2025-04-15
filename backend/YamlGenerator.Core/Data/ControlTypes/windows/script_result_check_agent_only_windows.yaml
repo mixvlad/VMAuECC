@@ -1,0 +1,54 @@
+localization:
+localization:
+  en:
+    name: "Script Result Check (Agent Only)"
+    description: "This control type collects results of the Windows scripts provided by the user. For example: Powershell, Python."
+  ru:
+    name: "Проверка результатов скрипта (только агент)"
+    description: "Этот тип контроля собирает результаты скриптов Windows, предоставленных пользователем. Например: Powershell, Python."
+parameters:
+  - name: "script"
+    type: "text"
+    required: true
+    defaultValue: "Get-Process | Select-Object -First 5"
+    localization:
+      en:
+        displayName: "Script Content"
+        description: "The content of the script to execute"
+      ru:
+        displayName: "Содержимое скрипта"
+        description: "Содержимое скрипта для выполнения"
+  - name: "scriptType"
+    type: "string"
+    required: false
+    defaultValue: "powershell"
+    localization:
+      en:
+        displayName: "Script Type"
+        description: "The type of script to execute (powershell, cmd, python)"
+      ru:
+        displayName: "Тип скрипта"
+        description: "Тип скрипта для выполнения (powershell, cmd, python)"
+  - name: "timeout"
+    type: "integer"
+    required: false
+    defaultValue: "30"
+    localization:
+      en:
+        displayName: "Execution Timeout"
+        description: "Maximum time in seconds to wait for script execution"
+      ru:
+        displayName: "Таймаут выполнения"
+        description: "Максимальное время в секундах для ожидания выполнения скрипта"
+  - name: "expectedOutput"
+    type: "text"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Output"
+        description: "Expected output of the script (leave empty to just collect the output)"
+      ru:
+        displayName: "Ожидаемый вывод"
+        description: "Ожидаемый вывод скрипта (оставьте пустым, чтобы просто собрать вывод)"
+

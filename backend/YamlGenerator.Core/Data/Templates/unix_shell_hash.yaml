@@ -1,7 +1,7 @@
 $extractors:
     ShellCommand:
         $template: unix_shell # windows_shell / unix_shell / device_shell / powershell
-        $command: {{command}}
+        $command: {{algorithm}}sum {{path}}
 
 $loaders:
   ShellCommandLoader:

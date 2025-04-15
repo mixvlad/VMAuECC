@@ -1,0 +1,54 @@
+localization:
+localization:
+  en:
+    name: "Directory Integrity Check"
+    description: "This control type checks the integrity of Windows files at the directory level and reports hash based file integrity and snapshot updates."
+  ru:
+    name: "Проверка целостности директории"
+    description: "Этот тип контроля проверяет целостность файлов Windows на уровне директории и сообщает об обновлениях целостности файлов на основе хеша и снимков."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "C:\\Windows\\System32"
+    localization:
+      en:
+        displayName: "Directory Path"
+        description: "The path to the directory to check integrity"
+      ru:
+        displayName: "Путь к директории"
+        description: "Путь к директории, целостность которой нужно проверить"
+  - name: "recursive"
+    type: "boolean"
+    required: false
+    defaultValue: "true"
+    localization:
+      en:
+        displayName: "Recursive Check"
+        description: "Whether to check subdirectories recursively"
+      ru:
+        displayName: "Рекурсивная проверка"
+        description: "Проверять ли поддиректории рекурсивно"
+  - name: "pattern"
+    type: "string"
+    required: false
+    defaultValue: "*.exe"
+    localization:
+      en:
+        displayName: "File Pattern"
+        description: "Pattern to match files (e.g. *.exe, *.dll)"
+      ru:
+        displayName: "Шаблон файлов"
+        description: "Шаблон для сопоставления файлов (например, *.exe, *.dll)"
+  - name: "algorithm"
+    type: "string"
+    required: false
+    defaultValue: "sha256"
+    localization:
+      en:
+        displayName: "Hash Algorithm"
+        description: "The algorithm to use for hashing (md5, sha1, sha256, sha512)"
+      ru:
+        displayName: "Алгоритм хеширования"
+        description: "Алгоритм для хеширования (md5, sha1, sha256, sha512)"
+

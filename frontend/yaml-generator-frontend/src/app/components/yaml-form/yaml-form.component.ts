@@ -28,7 +28,8 @@ import { ControlTypeParameter, ControlTypeWithParameters } from '../../models/co
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule
-  ],  templateUrl: './yaml-form.component.html',
+  ],  
+  templateUrl: './yaml-form.component.html',
   styleUrls: ['./yaml-form.component.scss']
 })
 export class YamlFormComponent implements OnInit {
@@ -52,19 +53,6 @@ export class YamlFormComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
-  validateCustomParameters(control: AbstractControl): {[key: string]: any} | null {
-    if (!control.value) {
-      return null; // Empty is valid
-    }
-    
-    try {
-      JSON.parse(control.value);
-      return null; // Valid JSON
-    } catch (e) {
-      return { 'invalidJson': true };
-    }
-  }
-
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.controlTypeId = params['controlTypeId'];
@@ -72,9 +60,9 @@ export class YamlFormComponent implements OnInit {
       this.loadControlType();
     });
 
-    // Initialize form with customParameters and validation
+    // Initialize form without customParameters
     this.form = this.formBuilder.group({
-      customParameters: ['', this.validateCustomParameters]
+      // Only include other form controls here, not customParameters
     });
   }
 

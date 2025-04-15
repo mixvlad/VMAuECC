@@ -1,0 +1,54 @@
+localization:
+localization:
+  en:
+    name: "File Content Check (Agent Only)"
+    description: "This control type checks the contents of a user-specified file (wildcard file search)."
+  ru:
+    name: "Проверка содержимого файла (только агент)"
+    description: "Этот тип контроля проверяет содержимое указанного пользователем файла (поиск файлов по шаблону)."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "/etc/*.conf"
+    localization:
+      en:
+        displayName: "File Path Pattern"
+        description: "The path pattern to the files to check content (supports wildcards)"
+      ru:
+        displayName: "Шаблон пути к файлу"
+        description: "Шаблон пути к файлам, содержимое которых нужно проверить (поддерживает подстановочные знаки)"
+  - name: "pattern"
+    type: "string"
+    required: true
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Content Pattern"
+        description: "Regular expression pattern to search for in the files"
+      ru:
+        displayName: "Шаблон содержимого"
+        description: "Регулярное выражение для поиска в файлах"
+  - name: "ignoreCase"
+    type: "boolean"
+    required: false
+    defaultValue: "false"
+    localization:
+      en:
+        displayName: "Ignore Case"
+        description: "Whether to ignore case when matching the pattern"
+      ru:
+        displayName: "Игнорировать регистр"
+        description: "Игнорировать ли регистр при сопоставлении шаблона"
+  - name: "maxMatches"
+    type: "integer"
+    required: false
+    defaultValue: "100"
+    localization:
+      en:
+        displayName: "Maximum Matches"
+        description: "Maximum number of matches to return"
+      ru:
+        displayName: "Максимальное количество совпадений"
+        description: "Максимальное количество совпадений для возврата"
+

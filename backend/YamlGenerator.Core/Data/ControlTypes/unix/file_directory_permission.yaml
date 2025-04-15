@@ -1,0 +1,54 @@
+localization:
+localization:
+  en:
+    name: "File/Directory Permission"
+    description: "This control type checks permissions that are set on a user-specified file or directory."
+  ru:
+    name: "Проверка прав доступа к файлу/директории"
+    description: "Этот тип контроля проверяет права доступа, установленные на указанном пользователем файле или директории."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "/etc/shadow"
+    localization:
+      en:
+        displayName: "File/Directory Path"
+        description: "The path to the file or directory to check permissions"
+      ru:
+        displayName: "Путь к файлу/директории"
+        description: "Путь к файлу или директории, права доступа которых нужно проверить"
+  - name: "expectedPermissions"
+    type: "string"
+    required: true
+    defaultValue: "640"
+    localization:
+      en:
+        displayName: "Expected Permissions"
+        description: "The expected permissions in octal format (e.g. 644)"
+      ru:
+        displayName: "Ожидаемые права доступа"
+        description: "Ожидаемые права доступа в восьмеричном формате (например, 644)"
+  - name: "owner"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Owner"
+        description: "The expected owner of the file or directory"
+      ru:
+        displayName: "Ожидаемый владелец"
+        description: "Ожидаемый владелец файла или директории"
+  - name: "group"
+    type: "string"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Group"
+        description: "The expected group of the file or directory"
+      ru:
+        displayName: "Ожидаемая группа"
+        description: "Ожидаемая группа файла или директории"
+

@@ -1,0 +1,43 @@
+localization:
+localization:
+  en:
+    name: "Registry Permission"
+    description: "This control type checks permissions that are set on a Windows registry key."
+  ru:
+    name: "Проверка прав доступа к реестру"
+    description: "Этот тип контроля проверяет права доступа, установленные на ключе реестра Windows."
+parameters:
+  - name: "keyPath"
+    type: "string"
+    required: true
+    defaultValue: "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+    localization:
+      en:
+        displayName: "Registry Key Path"
+        description: "The full path to the registry key to check permissions"
+      ru:
+        displayName: "Путь к ключу реестра"
+        description: "Полный путь к ключу реестра для проверки прав доступа"
+  - name: "principal"
+    type: "string"
+    required: false
+    defaultValue: "Administrators"
+    localization:
+      en:
+        displayName: "Principal"
+        description: "The user or group to check permissions for (e.g. Administrators, SYSTEM)"
+      ru:
+        displayName: "Субъект"
+        description: "Пользователь или группа для проверки прав доступа (например, Administrators, SYSTEM)"
+  - name: "expectedRights"
+    type: "string"
+    required: false
+    defaultValue: "FullControl"
+    localization:
+      en:
+        displayName: "Expected Rights"
+        description: "The expected access rights (e.g. FullControl, ReadKey, WriteKey)"
+      ru:
+        displayName: "Ожидаемые права"
+        description: "Ожидаемые права доступа (например, FullControl, ReadKey, WriteKey)"
+

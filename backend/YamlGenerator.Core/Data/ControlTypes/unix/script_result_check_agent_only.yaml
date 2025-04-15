@@ -1,0 +1,52 @@
+localization:
+localization:
+  en:
+    name: "Script Result Check (Agent Only)"
+    description: "This control type collects results of the Unix scripts provided by the user. For example: Lua, Perl, Python, Shell."
+  ru:
+    name: "Проверка результатов скрипта (только агент)"
+    description: "Этот тип контроля собирает результаты скриптов Unix, предоставленных пользователем. Например: Lua, Perl, Python, Shell."
+parameters:
+  - name: "script"
+    type: "text"
+    required: true
+    defaultValue: "#!/bin/bash\necho 'Hello, World!'"
+    localization:
+      en:
+        displayName: "Script Content"
+        description: "The content of the script to execute"
+      ru:
+        displayName: "Содержимое скрипта"
+        description: "Содержимое скрипта для выполнения"
+  - name: "interpreter"
+    type: "string"
+    required: false
+    defaultValue: "/bin/bash"
+    localization:
+      en:
+        displayName: "Script Interpreter"
+        description: "The interpreter to use for executing the script (e.g. /bin/bash, /usr/bin/python3)"
+      ru:
+        displayName: "Интерпретатор скрипта"
+        description: "Интерпретатор для выполнения скрипта (например, /bin/bash, /usr/bin/python3)"
+  - name: "timeout"
+    type: "integer"
+    required: false
+    defaultValue: "30"
+    localization:
+      en:
+        displayName: "Execution Timeout"
+        description: "Maximum time in seconds to wait for script execution"
+      ru:
+        displayName: "Таймаут выполнения"
+        description: "Максимальное время в секундах для ожидания выполнения скрипта"
+  - name: "expectedOutput"
+    type: "text"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Output"
+        description: "Expected output of the script (leave empty to just collect the output)"
+      ru:
+        displayName: "Ожидаемый вывод"

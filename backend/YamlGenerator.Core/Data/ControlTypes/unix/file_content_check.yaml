@@ -1,0 +1,43 @@
+localization:
+localization:
+  en:
+    name: "File Content Check"
+    description: "This control type checks the contents of a user-specified file."
+  ru:
+    name: "Проверка содержимого файла"
+    description: "Этот тип контроля проверяет содержимое указанного пользователем файла."
+parameters:
+  - name: "path"
+    type: "string"
+    required: true
+    defaultValue: "/etc/passwd"
+    localization:
+      en:
+        displayName: "File Path"
+        description: "The path to the file to check content"
+      ru:
+        displayName: "Путь к файлу"
+        description: "Путь к файлу, содержимое которого нужно проверить"
+  - name: "pattern"
+    type: "string"
+    required: true
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Pattern to Match"
+        description: "Regular expression pattern to search for in the file"
+      ru:
+        displayName: "Шаблон для поиска"
+        description: "Регулярное выражение для поиска в файле"
+  - name: "ignoreCase"
+    type: "boolean"
+    required: false
+    defaultValue: "false"
+    localization:
+      en:
+        displayName: "Ignore Case"
+        description: "Whether to ignore case when matching the pattern"
+      ru:
+        displayName: "Игнорировать регистр"
+        description: "Игнорировать ли регистр при сопоставлении шаблона"
+
