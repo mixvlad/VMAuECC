@@ -23,7 +23,7 @@ public class YamlGeneratorService
             { "windows_file_info", "YamlGenerator.Core.Data.Templates.windows_file_info.yaml" },
             { "file_content_check", "YamlGenerator.Core.Data.Templates.shell_template.yaml" },
             { "file_integrity_check", "YamlGenerator.Core.Data.Templates.unix_shell_hash.yaml" },
-            
+            { "file_integrity_check_windows", "YamlGenerator.Core.Data.Templates.windows_shell_hash.yaml" },
             // Можно легко добавить новые маппинги здесь
         };
     }

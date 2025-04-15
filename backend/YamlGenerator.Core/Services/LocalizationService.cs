@@ -111,24 +111,6 @@ namespace YamlGenerator.Core.Services
         }
 
 
-        public List<LocalizedControlType> GetControlTypes(string osType, string language = "en")
-        {
-            var localizedControlTypes = new List<LocalizedControlType>();
-            var controlTypes = osType.ToLower() == "unix" ? _unixControlTypes : _windowsControlTypes;
-
-            foreach (var controlType in controlTypes)
-            {
-                localizedControlTypes.Add(new LocalizedControlType
-                {
-                    Id = controlType.Id,
-                    Name = controlType.GetName(language),
-                    Description = controlType.GetDescription(language)
-                });
-            }
-
-            return localizedControlTypes;
-        }
-
         // Add a method to convert ParameterDefinition to ControlTypeParameter
         private ControlTypeParameter ConvertToControlTypeParameter(ParameterDefinition paramDef, string language)
         {
@@ -173,8 +155,30 @@ namespace YamlGenerator.Core.Services
                 Parameters = controlType.Parameters.Select(p => ConvertToControlTypeParameter(p, language)).ToList()
             };
             
+            
+            Console.WriteLine(result.Parameters);
             return result;
         }
+
+        
+        public List<LocalizedControlType> GetControlTypes(string osType, string language = "en")
+        {
+            var localizedControlTypes = new List<LocalizedControlType>();
+            var controlTypes = osType.ToLower() == "unix" ? _unixControlTypes : _windowsControlTypes;
+
+            foreach (var controlType in controlTypes)
+            {
+                localizedControlTypes.Add(new LocalizedControlType
+                {
+                    Id = controlType.Id,
+                    Name = controlType.GetName(language),
+                    Description = controlType.GetDescription(language)
+                });
+            }
+
+            return localizedControlTypes;
+        }
+
 
         public ControlType GetControlTypeById(string osType, string controlTypeId)
         {

@@ -77,6 +77,22 @@ public class ControlTypeService
               DefaultValue = p.DefaultValue
           }).ToList();
 
+          // Generate a unique hash (8 characters of alphanumeric)
+            string uniqueHash = GenerateAlphanumericHash(8);
+            
+            // Add the additional required parameter AddPropertiesName
+            parameters.Add(new ControlTypeParameter
+            {
+                Name = "AddPropertiesName",
+                DisplayName = language == "ru" ? "Имя поля результата" : "Result Field Name",
+                Description = language == "ru" 
+                    ? "Определяет имя поля, в которое будет записан результат сбора данных" 
+                    : "Defines the field name where the collected data will be stored",
+                Type = "string",
+                Required = true,
+                DefaultValue = $"{controlTypeId}_{uniqueHash}"
+            });
+
           return new ControlTypeWithParameters
           {
               Id = controlType.Id,
@@ -84,4 +100,16 @@ public class ControlTypeService
               Description = controlType.Description,
               Parameters = parameters
           };
-      }  }
+      } 
+
+        // Helper method to generate a unique alphanumeric hash
+        private string GenerateAlphanumericHash(int length)
+        {
+            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+    
+}
