@@ -1,3 +1,4 @@
+using System.Reflection;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlGenerator.Core.Models;
@@ -17,7 +18,17 @@ public class YamlGeneratorService
 
     public string GenerateYaml(CollectorConfig config)
     {
-        return _serializer.Serialize(config);
-    }
+        // For now, just return the template without modifications
+        var assembly = Assembly.GetExecutingAssembly();
+        var resourceName = "YamlGenerator.Core.Data.Templates.shell_template.yaml";
 
+        using var stream = assembly.GetManifestResourceStream(resourceName);
+        if (stream == null)
+        {
+            throw new FileNotFoundException($"Template resource not found: {resourceName}");
+        }
+
+        using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
+    }
 }

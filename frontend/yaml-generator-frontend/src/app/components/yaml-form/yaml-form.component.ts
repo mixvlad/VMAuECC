@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ControlTypeService } from '../../services/control-type.service';
 import { YamlService } from '../../services/yaml.service';
 import { ControlTypeParameter, ControlTypeWithParameters } from '../../models/control-type';
@@ -25,9 +26,9 @@ import { ControlTypeParameter, ControlTypeWithParameters } from '../../models/co
     MatCheckboxModule,
     MatCardModule,
     MatButtonModule,
-    MatSnackBarModule
-  ],
-  templateUrl: './yaml-form.component.html',
+    MatSnackBarModule,
+    MatProgressSpinnerModule
+  ],  templateUrl: './yaml-form.component.html',
   styleUrls: ['./yaml-form.component.scss']
 })
 export class YamlFormComponent implements OnInit {
@@ -40,6 +41,7 @@ export class YamlFormComponent implements OnInit {
   generatedYaml: string = '';
   isLoading: boolean = false;
   error: string = '';
+  isGeneratingYaml: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,6 +52,19 @@ export class YamlFormComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
+  validateCustomParameters(control: AbstractControl): {[key: string]: any} | null {
+    if (!control.value) {
+      return null; // Empty is valid
+    }
+    
+    try {
+      JSON.parse(control.value);
+      return null; // Valid JSON
+    } catch (e) {
+      return { 'invalidJson': true };
+    }
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.controlTypeId = params['controlTypeId'];
@@ -57,9 +72,9 @@ export class YamlFormComponent implements OnInit {
       this.loadControlType();
     });
 
-    // Initialize form with just customParameters
+    // Initialize form with customParameters and validation
     this.form = this.formBuilder.group({
-      customParameters: ['']
+      customParameters: ['', this.validateCustomParameters]
     });
   }
 
@@ -94,21 +109,29 @@ export class YamlFormComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true;
+    this.isGeneratingYaml = true;
     this.error = '';
+    this.generatedYaml = ''; // Сбрасываем предыдущий результат
 
     const formData = this.form.value;
     
-    this.yamlService.generateYaml(formData)
+    this.yamlService.generateYaml(formData, this.controlTypeId, this.osType)
       .subscribe({
         next: (yaml) => {
           this.generatedYaml = yaml;
-          this.isLoading = false;
+          this.isGeneratingYaml = false;
+          this.snackBar.open('YAML generated successfully', 'Close', {
+            duration: 3000
+          });
         },
         error: (error) => {
           this.error = 'Failed to generate YAML. Please try again.';
-          this.isLoading = false;
+          this.isGeneratingYaml = false;
           console.error('Error generating YAML:', error);
+          this.snackBar.open('Error generating YAML', 'Close', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
         }
       });
   }

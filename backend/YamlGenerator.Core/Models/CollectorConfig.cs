@@ -1,16 +1,18 @@
+using System.Text.Json.Serialization;
+
 namespace YamlGenerator.Core.Models;
 
 public class CollectorConfig
 {
-    public List<string> CollectItems { get; set; } = new();
-
-    public string TargetPath { get; set; } = string.Empty;
-
-    public int IntervalSeconds { get; set; } = 60;
-
-    public bool IncludeSubdirectories { get; set; }
-
-    public List<string> FilePatterns { get; set; } = new();
-
-    public Dictionary<string, string> CustomParameters { get; set; } = new();
+    [JsonPropertyName("controlTypeId")]
+    public string ControlTypeId { get; set; } = string.Empty;
+    
+    [JsonPropertyName("osType")]
+    public string OsType { get; set; } = string.Empty;
+    
+    [JsonPropertyName("parameters")]
+    public Dictionary<string, string> Parameters { get; set; } = new Dictionary<string, string>();
+    
+    [JsonPropertyName("customParameters")]
+    public Dictionary<string, string> CustomParameters { get; set; } = new Dictionary<string, string>();
 }

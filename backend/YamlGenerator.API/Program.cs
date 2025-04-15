@@ -3,12 +3,16 @@ using System.Reflection;
 using YamlGenerator.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+string templatesPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Templates");
+
+
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<LocalizationService>();
 builder.Services.AddSingleton<ControlTypeService>();
+builder.Services.AddSingleton(new YamlGeneratorService());
 
 
 // Улучшенная настройка Swagger

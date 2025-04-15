@@ -35,7 +35,13 @@
         </div>
       </mat-card-content>
     </mat-card>
+    <!-- Добавим индикатор загрузки при генерации YAML -->
+    <div *ngIf="isGeneratingYaml" class="loading-overlay">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Generating YAML...</p>
+    </div>
 
+    <!-- Добавим в форму -->
     <mat-card>
       <mat-card-header>
         <mat-card-title>Additional Configuration</mat-card-title>
@@ -43,14 +49,21 @@
       <mat-card-content>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Custom Parameters</mat-label>
-          <textarea matInput formControlName="customParameters" placeholder="Enter custom parameters (JSON format)"></textarea>
+          <textarea matInput formControlName="customParameters" 
+            placeholder='Enter custom parameters as JSON object, e.g.: {"param1": "value1", "param2": "value2"}'></textarea>
+          <mat-hint>Enter a valid JSON object with string keys and values</mat-hint>
+          <!-- Add this to the customParameters form field -->
+          <mat-error *ngIf="form.get('customParameters')?.hasError('invalidJson')">
+            Please enter valid JSON format
+          </mat-error>
         </mat-form-field>
       </mat-card-content>
     </mat-card>
 
+    <!-- Улучшим кнопку генерации -->
     <div class="button-container">
-      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-        Generate YAML
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || isGeneratingYaml">
+        <mat-icon>code</mat-icon> Generate YAML
       </button>
     </div>
   </form>

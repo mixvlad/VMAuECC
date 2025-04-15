@@ -1,0 +1,16 @@
+$extractors:
+    ShellCommand:
+        $template: unix_shell # windows_shell / unix_shell / device_shell / powershell
+        $command: md5sum ?/etc/hosts
+
+$loaders:
+  ShellCommandLoader:
+  - $template: mapping
+    $target: OperatingSystem.UNIX.Linux.LinuxHost
+    $kind: scan
+    $origin:
+      $template: get_extractor_path
+      $name: ShellCommand
+    $field_map:
+      AdditionalProperties:
+        FileHash?: $row.Data

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Data\Localization\*.yaml" />
+    <EmbeddedResource Include="Data\Templates\*.yaml" />
   </ItemGroup>
 
   <ItemGroup>
