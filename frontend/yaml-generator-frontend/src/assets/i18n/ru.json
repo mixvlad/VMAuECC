@@ -15,5 +15,12 @@
     "GENERATE_YAML": "Сгенерировать YAML",
     "GENERATED_YAML": "Сгенерированный YAML",
     "DOWNLOAD_YAML": "Скачать YAML"
+  },
+  "CONTROL_TYPE": {
+    "SELECT_FOR": "Выберите тип контроля для",
+    "LOADING": "Загрузка типов контроля..."
+  },
+  "COMMON": {
+    "BACK_TO_OS_SELECTION": "Назад к выбору ОС"
   }
 }

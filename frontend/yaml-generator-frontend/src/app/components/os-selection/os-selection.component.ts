@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { LanguageService } from '../../services/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
       selector: "app-os-selection",
       templateUrl: "./os-selection.component.html",
       styleUrls: ["./os-selection.component.scss"],
       standalone: true,
-      imports: [CommonModule]
-})
-export class OsSelectionComponent implements OnInit {
+      imports: [CommonModule, TranslateModule]
+})export class OsSelectionComponent implements OnInit {
     currentLanguage: string = 'en';
 
     constructor(

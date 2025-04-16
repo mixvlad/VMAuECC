@@ -7,6 +7,7 @@ import { ControlType, OsControlTypes } from '../../models/control-type';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-control-type-selection',
@@ -16,7 +17,8 @@ import { MatCardModule } from '@angular/material/card';
     RouterModule, 
     MatButtonModule, 
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    TranslateModule
   ],
   templateUrl: './control-type-selection.component.html',
   styleUrls: ['./control-type-selection.component.scss']

@@ -64,20 +64,20 @@ export class YamlFormComponent implements OnInit {  controlTypeId: string = '';
       this.loadControlType();
     });
 
-    // Initialize form without customParameters
     this.form = this.formBuilder.group({
       // Only include other form controls here, not customParameters
     });
 
     this.languageService.language$.subscribe(lang => {
       this.currentLanguage = lang;
+      this.loadControlType();
     });
   }
 
   loadControlType(): void {
     this.isLoading = true;
     
-    this.controlTypeService.getControlType(this.osType, this.controlTypeId)
+    this.controlTypeService.getControlType(this.osType, this.controlTypeId, this.currentLanguage)
       .subscribe({
         next: (controlType: ControlTypeWithParameters) => {
           this.controlTypeName = controlType.name;

@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   changeLanguage(lang: string): void {
-    this.languageService.changeLanguage(lang);
+    this.languageService.setLanguage(lang);
   }
 
   navigateToHome() {
