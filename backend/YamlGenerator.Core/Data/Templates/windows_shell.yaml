@@ -1,12 +1,12 @@
 $extractors:
     ShellCommand:
-        $template: unix_shell # windows_shell / unix_shell / device_shell / powershell
+        $template: {{shell}}
         $command: {{command}}
 
 $loaders:
   ShellCommandLoader:
   - $template: mapping
-    $target: OperatingSystem.UNIX.Linux.LinuxHost
+    $target: OperatingSystem.Windows.WindowsHost
     $kind: scan
     $origin:
       $template: get_extractor_path

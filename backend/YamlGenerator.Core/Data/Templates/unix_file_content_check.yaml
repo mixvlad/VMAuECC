@@ -1,7 +1,7 @@
 $extractors:
     ShellCommand:
         $template: unix_shell
-        $command: {{algorithm}}sum {{path}}
+        $command: cat {{path}}
 
 $loaders:
   ShellCommandLoader:

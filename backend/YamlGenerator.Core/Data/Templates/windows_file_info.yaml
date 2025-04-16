@@ -1,7 +1,7 @@
 $extractors:
     CMDInfo:
         $template: windows_file_info
-        $filepath: '%windir%\system32\cmd.exe'
+        $filepath: {{path}}
 $loaders:
     CMDMapping:
     -   $template: mapping

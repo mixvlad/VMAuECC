@@ -1,0 +1,43 @@
+localization:
+  en:
+    name: "Windows Command Result Check"
+    description: "This control type collects results of the Windows command provided by the user. For example: Powershell, WindowsShell."
+  ru:
+    name: "Проверка результатов команды"
+    description: "Этот тип контроля собирает результаты команды Windows, предоставленных пользователем. Например: Powershell, WindowsShell."
+parameters:
+  - name: "command"
+    type: "text"
+    required: true
+    defaultValue: "Get-Process | Select-Object -First 5"
+    localization:
+      en:
+        displayName: "Shell Command"
+        description: "The command to execute"
+      ru:
+        displayName: "Содержимое команды"
+        description: "Содержимое команды для выполнения"
+  - name: "shell"
+    type: "string"
+    required: false
+    defaultValue: "windows_shell"
+    localization:
+      en:
+        displayName: "Script Type"
+        description: "The type of script to execute (powershell, windows_shell)"
+      ru:
+        displayName: "Тип скрипта"
+        description: "Тип скрипта для выполнения (powershell, windows_shell)"
+  
+  - name: "expectedOutput"
+    type: "text"
+    required: false
+    defaultValue: ""
+    localization:
+      en:
+        displayName: "Expected Output"
+        description: "Expected output of the script (leave empty to just collect the output)"
+      ru:
+        displayName: "Ожидаемый вывод"
+        description: "Ожидаемый вывод скрипта (оставьте пустым, чтобы просто собрать вывод)"
+

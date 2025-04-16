@@ -9,7 +9,7 @@ public class YamlGeneratorService
 {
     private readonly ISerializer _serializer;
     private readonly Dictionary<string, string> _templateResourceMap;
-    private const string DefaultTemplateResource = "YamlGenerator.Core.Data.Templates.shell_template.yaml";
+    private const string DefaultTemplateResource = "YamlGenerator.Core.Data.Templates.unix_shell.yaml";
 
     public YamlGeneratorService()
     {
@@ -21,9 +21,11 @@ public class YamlGeneratorService
         _templateResourceMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "windows_file_info", "YamlGenerator.Core.Data.Templates.windows_file_info.yaml" },
-            { "file_content_check", "YamlGenerator.Core.Data.Templates.shell_template.yaml" },
-            { "file_integrity_check", "YamlGenerator.Core.Data.Templates.unix_shell_hash.yaml" },
             { "file_integrity_check_windows", "YamlGenerator.Core.Data.Templates.windows_shell_hash.yaml" },
+            { "file_content_check", "YamlGenerator.Core.Data.Templates.unix_file_content_check.yaml" },
+            { "file_integrity_check", "YamlGenerator.Core.Data.Templates.unix_shell_hash.yaml" },
+            { "windows_command_result_check", "YamlGenerator.Core.Data.Templates.windows_shell.yaml" },
+            { "unix_command_result_check", "YamlGenerator.Core.Data.Templates.unix_shell.yaml" },
             // Можно легко добавить новые маппинги здесь
         };
     }
