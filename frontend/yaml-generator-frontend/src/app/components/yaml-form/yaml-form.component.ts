@@ -155,4 +155,60 @@ export class YamlFormComponent implements OnInit {  controlTypeId: string = '';
   goBack(): void {
     this.router.navigate(['/control-types', this.osType]);
   }
+
+  // Добавим метод для генерации и скачивания ZIP
+  generateZip(): void {
+    if (this.form.valid) {
+      this.isLoading = true;
+      this.yamlService.generateZip(this.form.value, this.controlTypeId, this.osType)
+        .subscribe({
+          next: (data: Blob) => {
+            this.isLoading = false;
+            // Создаем ссылку для скачивания
+            const url = window.URL.createObjectURL(data);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'configuration.zip';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            // Показываем уведомление об успехе
+            this.snackBar.open('ZIP file generated successfully!', 'Close', {
+              duration: 3000,
+            });
+          },
+          error: (error) => {
+            this.isLoading = false;
+            console.error('Error generating ZIP:', error);
+            this.snackBar.open('Error generating ZIP file', 'Close', {
+              duration: 3000,
+            });
+          }
+        });
+    } else {
+      this.markFormGroupTouched(this.form);
+    }
+  }
+
+  private markFormGroupTouched(formGroup: FormGroup): void {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+
+  // Add this method to the YamlFormComponent class
+  generateYaml(): void {
+    // This method should handle the YAML generation
+    if (this.form.valid) {
+      this.onSubmit(); // We can reuse the existing onSubmit method
+    } else {
+      this.markFormGroupTouched(this.form);
+    }
+  }
 }

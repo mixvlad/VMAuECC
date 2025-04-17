@@ -144,5 +144,44 @@ public class YamlGeneratorService
 
         return controlType;
     }
+
+    public byte[] GenerateZipConfiguration(CollectorConfig config)
+    {
+        // Генерируем YAML для включения в ZIP
+        string yamlContent = GenerateYaml(config);
+        
+        using (var memoryStream = new MemoryStream())
+        {
+            using (var archive = new System.IO.Compression.ZipArchive(memoryStream, System.IO.Compression.ZipArchiveMode.Create, true))
+            {
+                // Добавляем основной YAML файл
+                var yamlEntry = archive.CreateEntry("config.yaml");
+                using (var entryStream = yamlEntry.Open())
+                using (var streamWriter = new StreamWriter(entryStream))
+                {
+                    streamWriter.Write(yamlContent);
+                }
+                
+                // Здесь можно добавить дополнительные файлы в архив
+                // Например, README.txt
+                var readmeEntry = archive.CreateEntry("README.txt");
+                using (var entryStream = readmeEntry.Open())
+                using (var streamWriter = new StreamWriter(entryStream))
+                {
+                    streamWriter.Write("This is a configuration package for data collection.");
+                }
+                
+                // Создаем подпапку scripts
+                var scriptEntry = archive.CreateEntry("scripts/run.sh");
+                using (var entryStream = scriptEntry.Open())
+                using (var streamWriter = new StreamWriter(entryStream))
+                {
+                    streamWriter.Write("#!/bin/bash\necho \"Running configuration script\"");
+                }
+            }
+            
+            return memoryStream.ToArray();
+        }
+    }
     
 }

@@ -50,4 +50,38 @@ export class YamlService {
     
     return this.http.post(`${this.apiUrl}/api/Yaml/generate`, request, { responseType: 'text' });
   }
+
+  // Добавим новый метод для генерации ZIP
+  generateZip(formData: any, controlTypeId: string, osType: string): Observable<Blob> {
+    // Подготовка данных аналогична методу generateYaml
+    let customParamsObj: { [key: string]: string } = {};
+    if (formData.customParameters) {
+      try {
+        customParamsObj = JSON.parse(formData.customParameters);
+      } catch (e) {
+        console.error('Error parsing customParameters as JSON:', e);
+      }
+    }
+
+    const requestData: YamlRequestData = {
+      controlTypeId: controlTypeId,
+      osType: osType,
+      parameters: {},
+      customParameters: customParamsObj
+    };
+    
+    for (const key in formData) {
+      if (key !== 'customParameters') {
+        requestData.parameters[key] = formData[key];
+      }
+    }
+    
+    const request = requestData;
+    
+    // Возвращаем Blob для скачивания файла
+    return this.http.post(`${this.apiUrl}/api/Yaml/generateZip`, request, { 
+      responseType: 'blob' 
+    });
+  }
+
 }

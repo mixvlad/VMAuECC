@@ -45,4 +45,22 @@ public class YamlController : ControllerBase
         }
     }
 
+    [HttpPost("generateZip")]
+    public IActionResult GenerateZip([FromBody] CollectorConfig config)
+    {
+        try
+        {
+            // Генерируем ZIP-архив
+            byte[] zipBytes = _yamlGenerator.GenerateZipConfiguration(config);
+            
+            // Возвращаем ZIP-файл
+            return File(zipBytes, "application/zip", "configuration.zip");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+
 }

@@ -41,10 +41,13 @@
       <p>{{ 'YAML_FORM.GENERATING_YAML' | translate }}</p>
     </div>
 
-    <!-- Улучшим кнопку генерации -->
+    <!-- Добавим кнопку для генерации ZIP рядом с кнопкой генерации YAML -->
     <div class="button-container">
-      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || isGeneratingYaml">
-        <mat-icon>code</mat-icon> {{ 'YAML_FORM.GENERATE_YAML' | translate }}
+      <button mat-raised-button color="primary" (click)="generateYaml()" [disabled]="isLoading">
+        {{ 'YAML_FORM.GENERATE_YAML' | translate }}
+      </button>
+      <button mat-raised-button color="accent" (click)="generateZip()" [disabled]="isLoading" class="ml-2">
+        {{ 'YAML_FORM.GENERATE_ZIP' | translate }}
       </button>
     </div>
   </form>
@@ -60,6 +63,10 @@
       <mat-card-actions>
         <button mat-raised-button color="accent" (click)="downloadYaml()">
           <mat-icon>download</mat-icon> {{ 'YAML_FORM.DOWNLOAD_YAML' | translate }}
+        </button>
+        
+        <button mat-raised-button color="accent" (click)="generateZip()" [disabled]="isLoading" class="ml-2">
+          {{ 'YAML_FORM.GENERATE_ZIP' | translate }}
         </button>
       </mat-card-actions>
     </mat-card>

@@ -14,7 +14,8 @@
     "GENERATING_YAML": "Generating YAML...",
     "GENERATE_YAML": "Generate YAML",
     "GENERATED_YAML": "Generated YAML",
-    "DOWNLOAD_YAML": "Download YAML"
+    "DOWNLOAD_YAML": "Download YAML",
+    "GENERATE_ZIP": "Generate ZIP"
   },
   "CONTROL_TYPE": {
     "SELECT_FOR": "Select Control Type for",
@@ -23,5 +24,6 @@
   "COMMON": {
     "BACK_TO_OS_SELECTION": "Back to OS Selection"
   }
+  
   
 }
