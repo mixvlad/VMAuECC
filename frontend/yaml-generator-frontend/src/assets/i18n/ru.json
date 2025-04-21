@@ -15,7 +15,7 @@
     "GENERATE_YAML": "Сгенерировать YAML",
     "GENERATED_YAML": "Сгенерированный YAML",
     "DOWNLOAD_YAML": "Скачать YAML",
-    "GENERATE_ZIP": "Сгенерировать ZIP"
+    "GENERATE_ZIP": "Скачать стандарт .ZIP"
   },
   "CONTROL_TYPE": {
     "SELECT_FOR": "Выберите тип контроля для",

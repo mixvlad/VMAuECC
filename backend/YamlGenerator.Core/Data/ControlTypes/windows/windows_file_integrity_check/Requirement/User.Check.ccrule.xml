@@ -1,0 +1,28 @@
+<rules>
+    <![CDATA[
+     
+data_requirement_rule User.HashCheck (
+    @Entity=OperatingSystem.Windows.WindowsHost,
+    @DisplayName=@Entity.Hostname
+)
+
+params (
+    @expectedHash string
+)
+
+computability {
+    return notNull(@Entity.AdditionalProperties.{{AddPropertiesName}});
+}
+
+checkData
+{
+    var Hash = @Entity.AdditionalProperties.{{AddPropertiesName}} as string;
+
+    if (@Hash == @expectedHash)
+        return SUCCESS;
+
+    return FAIL_NON_COMPLIANT;
+}
+
+]]>
+</rules>

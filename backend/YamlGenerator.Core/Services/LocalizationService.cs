@@ -39,53 +39,71 @@ namespace YamlGenerator.Core.Services
                 Console.WriteLine($"Error loading control types from YAML: {ex.Message}");
             }
         }
-
-        private List<ControlType> LoadControlTypesForOS(string osType)
-        {
-            var controlTypes = new List<ControlType>();
-            var assembly = Assembly.GetExecutingAssembly();
+          private List<ControlType> LoadControlTypesForOS(string osType)
+          {
+              var controlTypes = new List<ControlType>();
+              var assembly = Assembly.GetExecutingAssembly();
             
-            // Get all embedded resources
-            var resourceNames = assembly.GetManifestResourceNames();
+              // Get all embedded resources
+              var resourceNames = assembly.GetManifestResourceNames();
             
-            // Filter resources for the specific OS type
-            var controlTypeResources = resourceNames
-                .Where(r => r.StartsWith($"YamlGenerator.Core.Data.ControlTypes.{osType}.") && r.EndsWith(".yaml"))
-                .ToList();
+              // Filter resources for the specific OS type
+              // New pattern: YamlGenerator.Core.Data.ControlTypes.{osType}.{controlTypeId}.{controlTypeId}.yaml
+              var controlTypeResources = resourceNames
+                  .Where(r => r.StartsWith($"YamlGenerator.Core.Data.ControlTypes.{osType}.") && 
+                              r.EndsWith(".yaml"))
+                  .ToList();
             
-            foreach (var resourceName in controlTypeResources)
-            {
-                // Extract control type ID from the resource name
-                var parts = resourceName.Split('.');
-                var osTypeIndex = Array.IndexOf(parts, osType);
-                if (osTypeIndex >= 0 && osTypeIndex + 1 < parts.Length)
-                {
-                    var controlTypeId = parts[osTypeIndex + 1];
-            
-                    using var stream = assembly.GetManifestResourceStream(resourceName);
-                    if (stream != null)
-                    {
-                        using var reader = new StreamReader(stream);
-                        var yaml = reader.ReadToEnd();
+              foreach (var resourceName in controlTypeResources)
+              {
+                  try
+                  {
+                      // Extract control type ID from the resource name
+                      // Split the resource name by dots
+                      var parts = resourceName.Split('.');
+                    
+                      // Find the index of the OS type in the parts array
+                      var osTypeIndex = Array.IndexOf(parts, osType);
+                    
+                      if (osTypeIndex >= 0 && osTypeIndex + 1 < parts.Length)
+                      {
+                          // The control type ID is now the folder name after the OS type
+                          var controlTypeId = parts[osTypeIndex + 1];
                         
-                        try {
-                            // Try to deserialize directly to a ControlType
-                            var controlType = DeserializeControlType(yaml, controlTypeId);
-                            controlTypes.Add(controlType);
-                        }
-                        catch (Exception ex) {
-                            Console.WriteLine($"Error deserializing control type {controlTypeId}: {ex.Message}");
-                        }
-                    }
-                    else
-                    {
-                        // Handle the case where the resource stream is null
-                        Console.WriteLine($"Warning: Resource not found: {resourceName}");
-                    }
-                }
-            }
+                          // Verify this is a control type file (filename should match folder name)
+                          // The pattern should be: osType.controlTypeId.controlTypeId.yaml
+                          if (parts.Length >= osTypeIndex + 3 && 
+                              parts[osTypeIndex + 1] == parts[osTypeIndex + 2])
+                          {
+                              using var stream = assembly.GetManifestResourceStream(resourceName);
+                              if (stream != null)
+                              {
+                                  using var reader = new StreamReader(stream);
+                                  var yaml = reader.ReadToEnd();
+                                
+                                  try {
+                                      // Deserialize to a ControlType
+                                      var controlType = DeserializeControlType(yaml, controlTypeId);
+                                      controlTypes.Add(controlType);
+                                  }
+                                  catch (Exception ex) {
+                                      Console.WriteLine($"Error deserializing control type {controlTypeId}: {ex.Message}");
+                                  }
+                              }
+                              else
+                              {
+                                  Console.WriteLine($"Warning: Resource not found: {resourceName}");
+                              }
+                          }
+                      }
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine($"Error processing resource {resourceName}: {ex.Message}");
+                  }
+              }
             
-            return controlTypes;
+              return controlTypes;
         }
 
         private ControlType DeserializeControlType(string yamlContent, string controlTypeId)

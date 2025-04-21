@@ -15,7 +15,7 @@
     "GENERATE_YAML": "Generate YAML",
     "GENERATED_YAML": "Generated YAML",
     "DOWNLOAD_YAML": "Download YAML",
-    "GENERATE_ZIP": "Generate ZIP"
+    "GENERATE_ZIP": "Download Standard .ZIP"
   },
   "CONTROL_TYPE": {
     "SELECT_FOR": "Select Control Type for",

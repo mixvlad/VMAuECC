@@ -1,9 +1,9 @@
 localization:
   en:
-    name: "File Content Check"
+    name: "Unix File Content Check"
     description: "This control type checks the contents of a user-specified file."
   ru:
-    name: "Проверка содержимого файла"
+    name: "Проверка содержимого файла Unix"
     description: "Этот тип контроля проверяет содержимое указанного пользователем файла."
 parameters:
   - name: "path"

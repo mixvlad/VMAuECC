@@ -20,12 +20,12 @@ public class YamlGeneratorService
         // Инициализация словаря маппинга типов контроля на имена ресурсов шаблонов
         _templateResourceMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            { "windows_file_info", "YamlGenerator.Core.Data.Templates.windows_file_info.yaml" },
-            { "file_integrity_check_windows", "YamlGenerator.Core.Data.Templates.windows_shell_hash.yaml" },
-            { "file_content_check", "YamlGenerator.Core.Data.Templates.unix_file_content_check.yaml" },
-            { "file_integrity_check", "YamlGenerator.Core.Data.Templates.unix_shell_hash.yaml" },
-            { "windows_command_result_check", "YamlGenerator.Core.Data.Templates.windows_shell.yaml" },
-            { "unix_command_result_check", "YamlGenerator.Core.Data.Templates.unix_shell.yaml" },
+            { "windows_file_info", "YamlGenerator.Core.Data.ControlTypes.windows.windows_file_info.aue_windows_file_info.yaml" },
+            { "windows_file_integrity_check", "YamlGenerator.Core.Data.ControlTypes.windows.windows_file_integrity_check.aue_windows_shell_hash.yaml" },
+            { "windows_command_result_check", "YamlGenerator.Core.Data.ControlTypes.windows.windows_command_result_check.aue_windows_shell.yaml" },
+            { "unix_file_content_check", "YamlGenerator.Core.Data.ControlTypes.unix.unix_file_content_check.aue_unix_shell_hash.yaml" },
+            { "unix_file_integrity_check", "YamlGenerator.Core.Data.ControlTypes.unix.unix_file_integrity_check.aue_unix_shell_hash.yaml" },
+            { "unix_command_result_check", "YamlGenerator.Core.Data.ControlTypes.unix.unix_command_result_check.aue_unix_shell.yaml" },
             // Можно легко добавить новые маппинги здесь
         };
     }
@@ -167,18 +167,19 @@ public class YamlGeneratorService
 
     public byte[] GenerateZipConfiguration(CollectorConfig config)
     {
-        // Генерируем YAML для включения в ZIP
-        //string yamlContent = GenerateYaml(config);
-        string standardContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.standard.yaml");
-        string i18nContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.i18n.yaml");
-        string dataRequirementsParametersContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.DataRequirementsParameters.yaml", config);
-        string ccruleContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.User.Check.ccrule.xml", config);
-
         
         using (var memoryStream = new MemoryStream())
         {
             using (var archive = new System.IO.Compression.ZipArchive(memoryStream, System.IO.Compression.ZipArchiveMode.Create, true))
             {
+                // Генерируем YAML для включения в ZIP
+                //string yamlContent = GenerateYaml(config);
+                string standardContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.yaml");
+                string i18nContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.i18n.yaml");
+                string dataRequirementsParametersContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.DataRequirementsParameters.yaml", config);
+                string ccruleContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.User.Check.ccrule.xml", config);
+
+                
                 // Здесь можно добавить дополнительные файлы в архив
                 // Например, README.txt
                 var readmeEntry = archive.CreateEntry("README.txt");
@@ -196,14 +197,12 @@ public class YamlGeneratorService
                     streamWriter.Write(standardContent);
                 }
                 
-                
                 var ccruleEntry = archive.CreateEntry("Requirements/User.Check/User.Check.ccrule.xml");
                 using (var entryStream = ccruleEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {
                     streamWriter.Write(ccruleContent);
                 }
-
 
                 var dataRequirementsParametersEntry = archive.CreateEntry("Requirements/User.Check/DataRequirementsParameters.yaml");
                 using (var entryStream = dataRequirementsParametersEntry.Open())

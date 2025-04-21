@@ -1,9 +1,9 @@
 localization:
   en:
-    name: "File Integrity Check"
+    name: "Windows File Integrity Check"
     description: "This control type checks the integrity of a user-specified file."
   ru:
-    name: "Проверка целостности файла"
+    name: "Проверка целостности файла Windows"
     description: "Этот тип контроля проверяет целостность указанного пользователем файла."
 parameters:
   - name: "path"
