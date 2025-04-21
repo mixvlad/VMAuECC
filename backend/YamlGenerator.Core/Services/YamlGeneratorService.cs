@@ -32,7 +32,6 @@ public class YamlGeneratorService
 
     public string GenerateYaml(CollectorConfig config)
     {
-        Console.WriteLine($"Generating YAML for Control Type ID: {config.ControlTypeId}");
         // Выбор шаблона на основе типа контроля
         string resourceName = SelectTemplateResourceName(config.ControlTypeId);
         
@@ -50,7 +49,6 @@ public class YamlGeneratorService
         return ProcessTemplate(templateContent, config);
     }
 
-    // В YamlGeneratorService.cs
     private string ProcessTemplate(string template, CollectorConfig config)
     {
         // Заменяем переменные из параметров
@@ -145,23 +143,42 @@ public class YamlGeneratorService
         return controlType;
     }
 
+    public string LoadAssemblyFile(string resourceName, CollectorConfig? config = null)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream(resourceName);
+        
+        if (stream == null)
+        {
+            throw new FileNotFoundException($"Template resource not found: {resourceName}");
+        }
+
+        using var reader = new StreamReader(stream);
+        string result = reader.ReadToEnd();
+
+        if (config != null)
+        {
+            result = ProcessTemplate(result, config);
+        }
+
+
+        return result;
+    }
+
     public byte[] GenerateZipConfiguration(CollectorConfig config)
     {
         // Генерируем YAML для включения в ZIP
-        string yamlContent = GenerateYaml(config);
+        //string yamlContent = GenerateYaml(config);
+        string standardContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.standard.yaml");
+        string i18nContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.i18n.yaml");
+        string dataRequirementsParametersContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.DataRequirementsParameters.yaml", config);
+        string ccruleContent = LoadAssemblyFile("YamlGenerator.Core.Data.Templates.standard.User.Check.ccrule.xml", config);
+
         
         using (var memoryStream = new MemoryStream())
         {
             using (var archive = new System.IO.Compression.ZipArchive(memoryStream, System.IO.Compression.ZipArchiveMode.Create, true))
             {
-                // Добавляем основной YAML файл
-                var yamlEntry = archive.CreateEntry("config.yaml");
-                using (var entryStream = yamlEntry.Open())
-                using (var streamWriter = new StreamWriter(entryStream))
-                {
-                    streamWriter.Write(yamlContent);
-                }
-                
                 // Здесь можно добавить дополнительные файлы в архив
                 // Например, README.txt
                 var readmeEntry = archive.CreateEntry("README.txt");
@@ -170,13 +187,36 @@ public class YamlGeneratorService
                 {
                     streamWriter.Write("This is a configuration package for data collection.");
                 }
-                
-                // Создаем подпапку scripts
-                var scriptEntry = archive.CreateEntry("scripts/run.sh");
-                using (var entryStream = scriptEntry.Open())
+
+                // Добавляем YAML файл стандарта
+                var standardEntry = archive.CreateEntry("standard.yaml");
+                using (var entryStream = standardEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {
-                    streamWriter.Write("#!/bin/bash\necho \"Running configuration script\"");
+                    streamWriter.Write(standardContent);
+                }
+                
+                
+                var ccruleEntry = archive.CreateEntry("Requirements/User.Check/User.Check.ccrule.xml");
+                using (var entryStream = ccruleEntry.Open())
+                using (var streamWriter = new StreamWriter(entryStream))
+                {
+                    streamWriter.Write(ccruleContent);
+                }
+
+
+                var dataRequirementsParametersEntry = archive.CreateEntry("Requirements/User.Check/DataRequirementsParameters.yaml");
+                using (var entryStream = dataRequirementsParametersEntry.Open())
+                using (var streamWriter = new StreamWriter(entryStream))
+                {
+                    streamWriter.Write(dataRequirementsParametersContent);
+                }
+
+                var i18nEntry = archive.CreateEntry("Requirements/User.Check/i18n.yaml");
+                using (var entryStream = i18nEntry.Open())
+                using (var streamWriter = new StreamWriter(entryStream))
+                {
+                    streamWriter.Write(i18nContent);
                 }
             }
             

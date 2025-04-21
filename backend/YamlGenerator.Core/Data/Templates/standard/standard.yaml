@@ -1,0 +1,18 @@
+Standards:
+  - Id: User.Windows
+    Name: User Essential - Windows
+    Description: Пользовательский стандарт для Windows хостов
+    Binding:
+      Entity: OperatingSystem.Windows.WindowsHost
+      DisplayName: '@Entity.Hostname'
+    Requirements:
+      - Id: User.HashCheck
+
+  - Id: User.PostgreSQL
+    Name: User Essential - PostgreSQL
+    Description: Пользовательский стандарт для PostgreSQL
+    Binding:
+      Entity: (Core.Host).Softs[Software.Postgre.PostgreSQL]
+      DisplayName: '@Entity.PgData'
+    Requirements:
+      - Id: User.PostgreCritical

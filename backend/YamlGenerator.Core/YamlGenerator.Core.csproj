@@ -10,6 +10,7 @@
     <EmbeddedResource Include="Data\ControlTypes\unix\*.yaml" />
     <EmbeddedResource Include="Data\ControlTypes\windows\*.yaml" />
     <EmbeddedResource Include="Data\Templates\*.yaml" />
+    <EmbeddedResource Include="Data\Templates\standard\*.*" />
   </ItemGroup>
 
   <ItemGroup>
