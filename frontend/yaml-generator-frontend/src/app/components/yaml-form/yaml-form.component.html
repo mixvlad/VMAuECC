@@ -9,6 +9,7 @@
   <p *ngIf="controlTypeDescription" class="description">{{controlTypeDescription}}</p>
 
   <div *ngIf="isLoading" class="loading">
+    <mat-spinner diameter="50"></mat-spinner>
     <p>{{ 'YAML_FORM.LOADING' | translate }}</p>
   </div>
 
@@ -16,7 +17,7 @@
     <p>{{error}}</p>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!isLoading && !error">
+  <form [formGroup]="form" *ngIf="!isLoading && !error">
     <!-- Dynamic parameters based on control type -->
     <mat-card *ngIf="controlTypeParameters.length > 0">
       <mat-card-header>
@@ -35,40 +36,130 @@
         </div>
       </mat-card-content>
     </mat-card>
+    
     <!-- Добавим индикатор загрузки при генерации YAML -->
     <div *ngIf="isGeneratingYaml" class="loading-overlay">
       <mat-spinner diameter="50"></mat-spinner>
       <p>{{ 'YAML_FORM.GENERATING_YAML' | translate }}</p>
     </div>
 
-    <!-- Добавим кнопку для генерации ZIP рядом с кнопкой генерации YAML -->
+    <!-- Buttons for different generation options -->
     <div class="button-container">
-      <button mat-raised-button color="primary" (click)="generateYaml()" [disabled]="isLoading">
-        {{ 'YAML_FORM.GENERATE_YAML' | translate }}
+      <button mat-raised-button color="primary" (click)="generateAUE()" [disabled]="isLoading || isGeneratingYaml">
+        {{ 'YAML_FORM.GENERATE_AUE' | translate }}
       </button>
-      <button mat-raised-button color="accent" (click)="generateZip()" [disabled]="isLoading" class="ml-2">
-        {{ 'YAML_FORM.GENERATE_ZIP' | translate }}
+      <button mat-raised-button color="primary" (click)="generateStandard()" [disabled]="isLoading || isGeneratingYaml" class="ml-2">
+        {{ 'YAML_FORM.GENERATE_STANDARD' | translate }}
+      </button>
+      <button mat-raised-button color="accent" (click)="generateRequirement()" [disabled]="isLoading || isGeneratingYaml" class="ml-2">
+        {{ 'YAML_FORM.GENERATE_REQUIREMENT' | translate }}
       </button>
     </div>
   </form>
 
-  <div *ngIf="generatedYaml" class="yaml-preview mt-20">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{ 'YAML_FORM.GENERATED_YAML' | translate }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <pre>{{generatedYaml}}</pre>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="accent" (click)="downloadYaml()">
-          <mat-icon>download</mat-icon> {{ 'YAML_FORM.DOWNLOAD_YAML' | translate }}
+  <!-- Tabs for different YAML outputs -->
+  <mat-tab-group *ngIf="generatedAUE || generatedStandard || hasRequirementFiles()" 
+                 class="yaml-preview mt-20"
+                 (selectedTabChange)="onTabChange($event)">
+    
+    <!-- AUE Tab -->
+    <mat-tab label="{{ 'YAML_FORM.AUE_YAML' | translate }}">
+      <mat-card *ngIf="generatedAUE">
+        <mat-card-header>
+          <mat-card-title>{{ 'YAML_FORM.GENERATED_AUE' | translate }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="code-container">
+            <pre>{{generatedAUE}}</pre>
+            <button mat-icon-button class="copy-button" (click)="copyAUE()" matTooltip="{{ 'YAML_FORM.COPY_TO_CLIPBOARD' | translate }}">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="downloadAUE()" [disabled]="isLoading">
+            <mat-icon>download</mat-icon> {{ 'YAML_FORM.DOWNLOAD_AUE' | translate }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <div *ngIf="!generatedAUE" class="empty-tab-message">
+        <p>{{ 'YAML_FORM.NO_AUE_GENERATED' | translate }}</p>
+        <button mat-raised-button color="primary" (click)="generateAUE()" [disabled]="isLoading || isGeneratingYaml">
+          {{ 'YAML_FORM.GENERATE_AUE' | translate }}
         </button>
+      </div>
+    </mat-tab>
+    
+    <!-- Standard Tab -->
+    <mat-tab label="{{ 'YAML_FORM.STANDARD_YAML' | translate }}">
+      <mat-card *ngIf="generatedStandard">
+        <mat-card-header>
+          <mat-card-title>{{ 'YAML_FORM.GENERATED_STANDARD' | translate }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="code-container">
+            <pre>{{generatedStandard}}</pre>
+            <button mat-icon-button class="copy-button" (click)="copyStandard()" matTooltip="{{ 'YAML_FORM.COPY_TO_CLIPBOARD' | translate }}">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="downloadStandard()" [disabled]="isLoading">
+            <mat-icon>download</mat-icon> {{ 'YAML_FORM.DOWNLOAD_STANDARD' | translate }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <div *ngIf="!generatedStandard" class="empty-tab-message">
+        <p>{{ 'YAML_FORM.NO_STANDARD_GENERATED' | translate }}</p>
+        <button mat-raised-button color="primary" (click)="generateStandard()" [disabled]="isLoading || isGeneratingYaml">
+          {{ 'YAML_FORM.GENERATE_STANDARD' | translate }}
+        </button>
+      </div>
+    </mat-tab>
+    
+    <!-- Requirement Tab -->
+    <mat-tab label="{{ 'YAML_FORM.REQUIREMENT' | translate }}">
+      <mat-card *ngIf="hasRequirementFiles()">
+        <mat-card-header>
+          <mat-card-title>{{ 'YAML_FORM.GENERATED_REQUIREMENT' | translate }}</mat-card-title>
+        </mat-card-header>
         
-        <button mat-raised-button color="accent" (click)="generateZip()" [disabled]="isLoading" class="ml-2">
-          {{ 'YAML_FORM.GENERATE_ZIP' | translate }}
+        <!-- File selector -->
+        <mat-card-content>
+          <div class="file-selector">
+            <button mat-button 
+                    *ngFor="let fileName of requirementFileNames"
+                    [class.active]="selectedRequirementFile === fileName"
+                    (click)="selectRequirementFile(fileName)">
+              {{ fileName }}
+            </button>
+          </div>
+          
+          <!-- File content -->
+          <div class="file-content">
+            <div class="code-container">
+              <pre>{{ getSelectedRequirementFileContent() }}</pre>
+              <button mat-icon-button class="copy-button" (click)="copyRequirementFile()" matTooltip="{{ 'YAML_FORM.COPY_TO_CLIPBOARD' | translate }}">
+                <mat-icon>content_copy</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+        
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="downloadRequirement()" [disabled]="isLoading">
+            <mat-icon>download</mat-icon> {{ 'YAML_FORM.DOWNLOAD_REQUIREMENT' | translate }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      
+      <div *ngIf="!hasRequirementFiles()" class="empty-tab-message">
+        <p>{{ 'YAML_FORM.NO_REQUIREMENT_GENERATED' | translate }}</p>
+        <button mat-raised-button color="primary" (click)="generateRequirement()" [disabled]="isLoading || isGeneratingYaml">
+          {{ 'YAML_FORM.GENERATE_REQUIREMENT' | translate }}
         </button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>

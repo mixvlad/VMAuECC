@@ -1,15 +1,12 @@
-Id: User.DisableVBA
+Id: User.HashCheck
 Name: Отключить возможность выполнения макросов в MS Word
 Description: >
   Необходимо отключить возможность выполнения макросов в программе Microsoft Word.
-Summary: Отключите возможность выполнения макросов в MS Word в групповых политиках.
-DataColumns:
-- Id: DisableVBA
-  Name: Политика для компьютера
-- Id: VBAWarnings
-  Name: Политика для пользователя
-- Id: BlockContentExecutionFromInternet
-  Name: Еще одна политика для пользователя
+Summary: Необходимо установить корректную настройку для службы Sysmon. Эталоны конфигураций
+  можно взять в репозитории.
+Parameters:
+  - Id: expectedHash
+    Name: Sha256 файла sysmonconfig.xml для рабочих станций
 Results:
 - Verdict: FailNonCompliant
   Reason: Макросы не отключены

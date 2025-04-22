@@ -15,7 +15,23 @@
     "GENERATE_YAML": "Generate YAML",
     "GENERATED_YAML": "Generated YAML",
     "DOWNLOAD_YAML": "Download YAML",
-    "GENERATE_ZIP": "Download Standard .ZIP"
+    "GENERATE_ZIP": "Download Standard .ZIP",
+    "GENERATE_AUE": "Generate AUE YAML",
+    "GENERATE_STANDARD": "Generate Standard YAML",
+    "GENERATE_REQUIREMENT": "Generate Requirement",
+    "AUE_YAML": "AUE YAML",
+    "STANDARD_YAML": "Standard YAML",
+    "REQUIREMENT": "Requirement",
+    "GENERATED_AUE": "Generated AUE YAML",
+    "GENERATED_STANDARD": "Generated Standard YAML",
+    "GENERATED_REQUIREMENT": "Generated Requirement",
+    "DOWNLOAD_AUE": "Download AUE YAML",
+    "DOWNLOAD_STANDARD": "Download Standard YAML",
+    "DOWNLOAD_REQUIREMENT": "Download Requirement ZIP",
+    "NO_AUE_GENERATED": "No AUE YAML has been generated yet",
+    "NO_STANDARD_GENERATED": "No Standard YAML has been generated yet",
+    "NO_REQUIREMENT_GENERATED": "No Requirement has been generated yet",
+    "COPY_TO_CLIPBOARD": "Copy to clipboard"
   },
   "CONTROL_TYPE": {
     "SELECT_FOR": "Select Control Type for",
@@ -24,6 +40,4 @@
   "COMMON": {
     "BACK_TO_OS_SELECTION": "Back to OS Selection"
   }
-  
-  
 }

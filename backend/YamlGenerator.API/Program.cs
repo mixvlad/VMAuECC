@@ -39,7 +39,9 @@ builder.Services.AddSwaggerGen(options =>
     }
 });
 
-builder.Services.AddSingleton<YamlGeneratorService>();
+builder.Services.AddSingleton<StandardService>();
+builder.Services.AddSingleton<AUEService>();
+builder.Services.AddSingleton<RequirementService>();
 builder.Services.AddSingleton<ControlTypeService>();
 
 builder.Services.AddCors(options =>

@@ -30,7 +30,7 @@ public class YamlGeneratorService
         };
     }
 
-    public string GenerateYaml(CollectorConfig config)
+    public string GenerateAUE(CollectorConfig config)
     {
         // Выбор шаблона на основе типа контроля
         string resourceName = SelectTemplateResourceName(config.ControlTypeId);
@@ -165,7 +165,7 @@ public class YamlGeneratorService
         return result;
     }
 
-    public byte[] GenerateZipConfiguration(CollectorConfig config)
+    public byte[] GenerateRequirement(CollectorConfig config)
     {
         
         using (var memoryStream = new MemoryStream())

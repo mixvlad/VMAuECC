@@ -18,7 +18,50 @@ export class YamlService {
 
   constructor(private http: HttpClient) { }
 
-  generateYaml(formData: any, controlTypeId: string, osType: string): Observable<string> {
+  // Generate AUE YAML
+  generateAUE(formData: any, controlTypeId: string, osType: string): Observable<string> {
+    const requestData = this.prepareRequestData(formData, controlTypeId, osType);
+    return this.http.post(`${this.apiUrl}/api/Yaml/generateAUE`, requestData, { responseType: 'text' });
+  }
+
+  // Download AUE YAML
+  downloadAUE(formData: any, controlTypeId: string, osType: string): Observable<Blob> {
+    const requestData = this.prepareRequestData(formData, controlTypeId, osType);
+    return this.http.post(`${this.apiUrl}/api/Yaml/downloadAUE`, requestData, { 
+      responseType: 'blob' 
+    });
+  }
+
+  // Generate Standard YAML
+  generateStandard(formData: any, controlTypeId: string, osType: string): Observable<string> {
+    const requestData = this.prepareRequestData(formData, controlTypeId, osType);
+    return this.http.post(`${this.apiUrl}/api/Yaml/generateStandard`, requestData, { responseType: 'text' });
+  }
+
+  // Download Standard YAML
+  downloadStandard(formData: any, controlTypeId: string, osType: string): Observable<Blob> {
+    const requestData = this.prepareRequestData(formData, controlTypeId, osType);
+    return this.http.post(`${this.apiUrl}/api/Yaml/downloadStandard`, requestData, { 
+      responseType: 'blob' 
+    });
+  }
+
+  // Generate Requirement ZIP
+  generateRequirement(formData: any, controlTypeId: string, osType: string): Observable<string> {
+    const requestData = this.prepareRequestData(formData, controlTypeId, osType);
+    return this.http.post(`${this.apiUrl}/api/Yaml/generateRequirement`, requestData, { responseType: 'text' });
+  }
+
+  // Download Requirement ZIP
+  downloadRequirement(formData: any, controlTypeId: string, osType: string): Observable<Blob> {
+    const requestData = this.prepareRequestData(formData, controlTypeId, osType);
+    return this.http.post(`${this.apiUrl}/api/Yaml/downloadRequirement`, requestData, { 
+      responseType: 'blob' 
+    });
+  }
+
+  // Helper method to prepare request data
+  private prepareRequestData(formData: any, controlTypeId: string, osType: string): YamlRequestData {
     // Parse customParameters if it's a JSON string
     let customParamsObj: { [key: string]: string } = {};
     if (formData.customParameters) {
@@ -45,43 +88,6 @@ export class YamlService {
       }
     }
     
-    // Wrap the request data in a config object as expected by the backend
-    const request = requestData;
-    
-    return this.http.post(`${this.apiUrl}/api/Yaml/generate`, request, { responseType: 'text' });
+    return requestData;
   }
-
-  // Добавим новый метод для генерации ZIP
-  generateZip(formData: any, controlTypeId: string, osType: string): Observable<Blob> {
-    // Подготовка данных аналогична методу generateYaml
-    let customParamsObj: { [key: string]: string } = {};
-    if (formData.customParameters) {
-      try {
-        customParamsObj = JSON.parse(formData.customParameters);
-      } catch (e) {
-        console.error('Error parsing customParameters as JSON:', e);
-      }
-    }
-
-    const requestData: YamlRequestData = {
-      controlTypeId: controlTypeId,
-      osType: osType,
-      parameters: {},
-      customParameters: customParamsObj
-    };
-    
-    for (const key in formData) {
-      if (key !== 'customParameters') {
-        requestData.parameters[key] = formData[key];
-      }
-    }
-    
-    const request = requestData;
-    
-    // Возвращаем Blob для скачивания файла
-    return this.http.post(`${this.apiUrl}/api/Yaml/generateZip`, request, { 
-      responseType: 'blob' 
-    });
-  }
-
 }
