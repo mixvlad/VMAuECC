@@ -1,5 +1,5 @@
 Rules:
-  - RuleName: User.Check
+  - RuleName: User.{{AddPropertiesName}}
     RuleParameters:
       - ParameterName: expectedHash
         ParameterValue: {{expectedHash}}

@@ -66,7 +66,7 @@ public class RequirementService : BaseTemplateService
                 // }
                 
                 // Add ccrule file
-                var ccruleEntry = archive.CreateEntry($"UserRequirements/User.Unix.{config.Parameters["AddPropertiesName"]}/User.Unix.{config.Parameters["AddPropertiesName"]}.ccrule.xml");
+                var ccruleEntry = archive.CreateEntry($"UserRequirements/User.{config.Parameters["AddPropertiesName"]}/User.{config.Parameters["AddPropertiesName"]}.ccrule.xml");
                 using (var entryStream = ccruleEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {
@@ -74,7 +74,7 @@ public class RequirementService : BaseTemplateService
                 }
 
                 // Add DataRequirementsParameters file
-                var dataRequirementsParametersEntry = archive.CreateEntry($"UserRequirements/User.Unix.{config.Parameters["AddPropertiesName"]}/DataRequirementsParameters.yaml");
+                var dataRequirementsParametersEntry = archive.CreateEntry($"UserRequirements/User.{config.Parameters["AddPropertiesName"]}/DataRequirementsParameters.yaml");
                 using (var entryStream = dataRequirementsParametersEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {
@@ -82,7 +82,7 @@ public class RequirementService : BaseTemplateService
                 }
 
                 // Add i18n file
-                var i18nEntry = archive.CreateEntry($"UserRequirements/User.Unix.{config.Parameters["AddPropertiesName"]}/i18n.yaml");
+                var i18nEntry = archive.CreateEntry($"UserRequirements/User.{config.Parameters["AddPropertiesName"]}/i18n.yaml");
                 using (var entryStream = i18nEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {

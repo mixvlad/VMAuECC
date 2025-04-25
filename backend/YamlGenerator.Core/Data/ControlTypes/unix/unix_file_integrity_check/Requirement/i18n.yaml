@@ -1,4 +1,4 @@
-'Id': 'User.Unix.{{AddPropertiesName}}'
+'Id': 'User.{{AddPropertiesName}}'
 'Name': 'Ожидаемый хеш файла {{path}}'
 'Description': 'Ожидаемый хеш файла {{path}}'
 'Summary': 'Хеш соответствует ожидаемому'

@@ -1,7 +1,7 @@
 <rules>
     <![CDATA[
 
-data_requirement_rule User.Unix.{{AddPropertiesName}} (
+data_requirement_rule User.{{AddPropertiesName}} (
     @Entity=OperatingSystem.UNIX.Linux.LinuxHost,
     @DisplayName=@Entity.Hostname,
     @ReturnCompliantRecords=false

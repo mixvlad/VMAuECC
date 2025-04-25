@@ -1,5 +1,5 @@
 Rules:
-  - RuleName: User.Unix.{{AddPropertiesName}}
+  - RuleName: User.{{AddPropertiesName}}
     RuleParameters:
       - ParameterName: expectedHash
         ParameterValue: {{expectedHash}}
