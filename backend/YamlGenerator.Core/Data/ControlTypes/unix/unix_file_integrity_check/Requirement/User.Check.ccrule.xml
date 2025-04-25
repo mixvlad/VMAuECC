@@ -1,27 +1,31 @@
 <rules>
     <![CDATA[
-     
-data_requirement_rule User.HashCheck (
+
+data_requirement_rule User.Unix.{{AddPropertiesName}} (
     @Entity=OperatingSystem.UNIX.Linux.LinuxHost,
-    @DisplayName=@Entity.Hostname
+    @DisplayName=@Entity.Hostname,
+    @ReturnCompliantRecords=false
 )
 
 params (
     @expectedHash string
 )
 
-computability {
-    return notNull(@Entity.AdditionalProperties.{{AddPropertiesName}});
-}
+assert (
+    @hash == @expectedHash
+)
 
-checkData
-{
-    var Hash = @Entity.AdditionalProperties.{{AddPropertiesName}} as string;
+checkData {
+    var @actualHashesArray = dynamic {
+        hash = @Entity.AdditionalProperties.{{AddPropertiesName}};
+    };
 
-    if (@Hash == @expectedHash)
-        return SUCCESS;
+    filterByParameters(@actualHashesArray);
 
-    return FAIL_NON_COMPLIANT;
+    if (@ComplianceCheckContext.NonCompliantRows.Any())
+        return FAIL_NON_COMPLIANT;
+
+    return SUCCESS;
 }
 
 ]]>

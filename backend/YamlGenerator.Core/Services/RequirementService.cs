@@ -45,28 +45,28 @@ public class RequirementService : BaseTemplateService
                 string standardContent = _standardService.GetStandardTemplate();
                 
                 // Load other required files
-                string i18nContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.i18n.yaml");
+                string i18nContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.i18n.yaml", config);
                 string dataRequirementsParametersContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.DataRequirementsParameters.yaml", config);
                 string ccruleContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.User.Check.ccrule.xml", config);
 
                 // Add README.txt to the archive
-                var readmeEntry = archive.CreateEntry("README.txt");
-                using (var entryStream = readmeEntry.Open())
-                using (var streamWriter = new StreamWriter(entryStream))
-                {
-                    streamWriter.Write("This is a configuration package for data collection.");
-                }
+                // var readmeEntry = archive.CreateEntry("README.txt");
+                // using (var entryStream = readmeEntry.Open())
+                // using (var streamWriter = new StreamWriter(entryStream))
+                // {
+                //     streamWriter.Write("This is a configuration package for data collection.");
+                // }
 
                 // Add standard YAML file
-                var standardEntry = archive.CreateEntry("standard.yaml");
-                using (var entryStream = standardEntry.Open())
-                using (var streamWriter = new StreamWriter(entryStream))
-                {
-                    streamWriter.Write(standardContent);
-                }
+                // var standardEntry = archive.CreateEntry("standard.yaml");
+                // using (var entryStream = standardEntry.Open())
+                // using (var streamWriter = new StreamWriter(entryStream))
+                // {
+                //     streamWriter.Write(standardContent);
+                // }
                 
                 // Add ccrule file
-                var ccruleEntry = archive.CreateEntry("Requirements/User.Check/User.Check.ccrule.xml");
+                var ccruleEntry = archive.CreateEntry($"UserRequirements/User.Unix.{config.Parameters["AddPropertiesName"]}/User.Unix.{config.Parameters["AddPropertiesName"]}.ccrule.xml");
                 using (var entryStream = ccruleEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {
@@ -74,7 +74,7 @@ public class RequirementService : BaseTemplateService
                 }
 
                 // Add DataRequirementsParameters file
-                var dataRequirementsParametersEntry = archive.CreateEntry("Requirements/User.Check/DataRequirementsParameters.yaml");
+                var dataRequirementsParametersEntry = archive.CreateEntry($"UserRequirements/User.Unix.{config.Parameters["AddPropertiesName"]}/DataRequirementsParameters.yaml");
                 using (var entryStream = dataRequirementsParametersEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {
@@ -82,7 +82,7 @@ public class RequirementService : BaseTemplateService
                 }
 
                 // Add i18n file
-                var i18nEntry = archive.CreateEntry("Requirements/User.Check/i18n.yaml");
+                var i18nEntry = archive.CreateEntry($"UserRequirements/User.Unix.{config.Parameters["AddPropertiesName"]}/i18n.yaml");
                 using (var entryStream = i18nEntry.Open())
                 using (var streamWriter = new StreamWriter(entryStream))
                 {

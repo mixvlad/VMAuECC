@@ -1,13 +1,14 @@
-Id: User.HashCheck
-Name: Отключить возможность выполнения макросов в MS Word
-Description: >
-  Необходимо отключить возможность выполнения макросов в программе Microsoft Word.
-Summary: Необходимо установить корректную настройку для службы Sysmon. Эталоны конфигураций
-  можно взять в репозитории.
-Parameters:
-  - Id: expectedHash
-    Name: Sha256 файла sysmonconfig.xml для рабочих станций
-Results:
-- Verdict: FailNonCompliant
-  Reason: Макросы не отключены
-  Instruction: Отключите макросы в групповых политиках.
+'Id': 'User.Unix.{{AddPropertiesName}}'
+'Name': 'Ожидаемый хеш файла {{path}}'
+'Description': 'Ожидаемый хеш файла {{path}}'
+'Summary': 'Хеш соответствует ожидаемому'
+'Parameters':
+  - 'Id': 'expectedHash'
+    'Name': 'Ожидаемый хеш'
+'DataColumns':
+  - 'Id': 'hash'
+    'Name': 'Фактический хеш'
+'Results':
+  - 'Verdict': 'FailNonCompliant'
+    'Reason': 'Хэш файла {{path}} не соответствует ожидаемому {{expectedHash}}'
+    'Instruction': 'Произошли какие-то изменения на хосте, которые повлияли на контрольную сумму файла, может быть хакерской активностью.'
