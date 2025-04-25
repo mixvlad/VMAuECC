@@ -1,0 +1,32 @@
+<rules>
+    <![CDATA[
+
+data_requirement_rule User.{{AddPropertiesName}} (
+    @Entity=OperatingSystem.Windows.WindowsHost,
+    @DisplayName=@Entity.Hostname,
+    @ReturnCompliantRecords=false
+)
+
+params (
+    @expectedValue string
+)
+
+assert (
+    @actualValue == @expectedValue
+)
+
+checkData {
+    var @actualValuesArray = dynamic {
+        actualValue = @Entity.AdditionalProperties.{{AddPropertiesName}};
+    };
+
+    filterByParameters(@actualValuesArray);
+
+    if (@ComplianceCheckContext.NonCompliantRows.Any())
+        return FAIL_NON_COMPLIANT;
+
+    return SUCCESS;
+}
+
+]]>
+</rules>

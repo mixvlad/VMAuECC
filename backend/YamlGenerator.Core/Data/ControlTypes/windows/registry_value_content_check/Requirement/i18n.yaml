@@ -1,0 +1,14 @@
+'Id': 'User.{{AddPropertiesName}}'
+'Name': 'Ожидаемый значение реестра {{keyPath}} {{valueName}}'
+'Description': 'Ожидаемый значение реестра {{keyPath}} {{valueName}}'
+'Summary': 'Значение ключа реестра соответствует ожидаемому'
+'Parameters':
+  - 'Id': 'expectedValue'
+    'Name': 'Ожидаемое значение реестра'
+'DataColumns':
+  - 'Id': 'actualValue'
+    'Name': 'Фактическое значение реестра'
+'Results':
+  - 'Verdict': 'FailNonCompliant'
+    'Reason': 'Значение реестра {{keyPath}} {{valueName}} не соответствует ожидаемому {{expectedValue}}'
+    'Instruction': 'Произошли какие-то изменения на хосте, которые повлияли на значение реестра, может быть хакерской активностью.'

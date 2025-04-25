@@ -19,7 +19,7 @@ public class RequirementService : BaseTemplateService
         // for preview purposes, not the actual ZIP file
         
         // Load the necessary files
-        string i18nContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.i18n.yaml");
+        string i18nContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.i18n.yaml", config);
         string dataRequirementsParametersContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.DataRequirementsParameters.yaml", config);
         string ccruleContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.User.Check.ccrule.xml", config);
         
@@ -42,7 +42,7 @@ public class RequirementService : BaseTemplateService
             using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
             {
                 // Generate standard YAML for inclusion in ZIP
-                string standardContent = _standardService.GetStandardTemplate();
+                //string standardContent = _standardService.GetStandardTemplate();
                 
                 // Load other required files
                 string i18nContent = LoadAssemblyFile($"YamlGenerator.Core.Data.ControlTypes.{config.OsType}.{config.ControlTypeId}.Requirement.i18n.yaml", config);

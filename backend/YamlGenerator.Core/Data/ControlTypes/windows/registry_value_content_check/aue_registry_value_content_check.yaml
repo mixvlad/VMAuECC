@@ -1,0 +1,20 @@
+$extractors:
+  RegKeyExtractor:
+    $template: registry_select
+    $paths:
+    - {{keyPath}}
+    $schema:
+      {{valueName}}: String
+      SourceRegistryKey: RegistryKey
+
+$loaders:
+  RegKeyMapping:
+  - $template: mapping
+    $target: OperatingSystem.Windows.WindowsHost
+    $kind: scan
+    $origin:
+      $template: get_extractor_path
+      $name: RegKeyExtractor
+    $field_map:
+      AdditionalProperties:
+        {{AddPropertiesName}}: $row.{{valueName}}
