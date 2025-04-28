@@ -3,12 +3,12 @@
 'Description': 'Ожидаемый хеш файла {{path}}'
 'Summary': 'Хеш соответствует ожидаемому'
 'Parameters':
-  - 'Id': 'expectedHash'
+  - 'Id': 'expectedValue'
     'Name': 'Ожидаемый хеш'
 'DataColumns':
-  - 'Id': 'hash'
+  - 'Id': 'actualValue'
     'Name': 'Фактический хеш'
 'Results':
   - 'Verdict': 'FailNonCompliant'
-    'Reason': 'Хэш файла {{path}} не соответствует ожидаемому {{expectedHash}}'
+    'Reason': 'Хэш файла {{path}} не соответствует ожидаемому {{expectedValue}}'
     'Instruction': 'Произошли какие-то изменения на хосте, которые повлияли на контрольную сумму файла, может быть хакерской активностью.'

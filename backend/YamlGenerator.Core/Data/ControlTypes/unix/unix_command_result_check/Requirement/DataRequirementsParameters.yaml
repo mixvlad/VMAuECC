@@ -1,5 +1,0 @@
-Rules:
-  - RuleName: User.HashCheck
-    RuleParameters:
-      - ParameterName: expectedHash
-        ParameterValue: {{expectedHash}}

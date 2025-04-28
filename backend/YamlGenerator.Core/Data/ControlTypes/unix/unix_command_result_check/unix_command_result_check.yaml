@@ -18,7 +18,7 @@ parameters:
         displayName: "Содержимое команды"
         description: "Содержимое команды для выполнения"
   
-  - name: "expectedOutput"
+  - name: "expectedValue"
     type: "text"
     required: false
     defaultValue: ""

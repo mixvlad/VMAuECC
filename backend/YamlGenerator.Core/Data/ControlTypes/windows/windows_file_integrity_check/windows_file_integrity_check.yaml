@@ -17,7 +17,7 @@ parameters:
       ru:
         displayName: "Путь к файлу"
         description: "Путь к файлу, целостность которого нужно проверить"
-  - name: "expectedHash"
+  - name: "expectedValue"
     type: "string"
     required: false
     defaultValue: ""

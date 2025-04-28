@@ -1,5 +1,0 @@
-Rules:
-  - RuleName: User.{{AddPropertiesName}}
-    RuleParameters:
-      - ParameterName: expectedHash
-        ParameterValue: {{expectedHash}}

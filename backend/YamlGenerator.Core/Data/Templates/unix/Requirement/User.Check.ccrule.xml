@@ -3,24 +3,24 @@
 
 data_requirement_rule User.{{AddPropertiesName}} (
     @Entity=OperatingSystem.UNIX.Linux.LinuxHost,
-    @DisplayName=@Entity.Hostname,
+    @DisplayName=@Entity.Hostname
     @ReturnCompliantRecords=false
 )
 
 params (
-    @expectedHash string
+    @expectedValue string
 )
 
 assert (
-    @hash == @expectedHash
+    @actualValue == @expectedValue
 )
 
 checkData {
-    var @actualHashesArray = dynamic {
-        hash = @Entity.AdditionalProperties.{{AddPropertiesName}};
+    var @actualValuesArray = dynamic {
+        actualValue = @Entity.AdditionalProperties.{{AddPropertiesName}};
     };
 
-    filterByParameters(@actualHashesArray);
+    filterByParameters(@actualValuesArray);
 
     if (@ComplianceCheckContext.NonCompliantRows.Any())
         return FAIL_NON_COMPLIANT;

@@ -1,0 +1,5 @@
+Rules:
+  - RuleName: User.{{AddPropertiesName}}
+    RuleParameters:
+      - ParameterName: expectedValue
+        ParameterValue: {{expectedValue}}

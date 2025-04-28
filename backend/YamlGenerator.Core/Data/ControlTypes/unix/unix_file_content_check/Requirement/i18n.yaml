@@ -1,16 +1,14 @@
-Id: User.DisableVBA
-Name: Отключить возможность выполнения макросов в MS Word
-Description: >
-  Необходимо отключить возможность выполнения макросов в программе Microsoft Word.
-Summary: Отключите возможность выполнения макросов в MS Word в групповых политиках.
-DataColumns:
-- Id: DisableVBA
-  Name: Политика для компьютера
-- Id: VBAWarnings
-  Name: Политика для пользователя
-- Id: BlockContentExecutionFromInternet
-  Name: Еще одна политика для пользователя
-Results:
-- Verdict: FailNonCompliant
-  Reason: Макросы не отключены
-  Instruction: Отключите макросы в групповых политиках.
+'Id': 'User.{{AddPropertiesName}}'
+'Name': 'Проверка результата выполнения команды'
+'Description': 'Проверка результата выполнения команды на Unix-системе'
+'Summary': 'Результат выполнения команды соответствует ожидаемому'
+'Parameters':
+  - 'Id': 'expectedValue'
+    'Name': 'Ожидаемый результат команды'
+'DataColumns':
+  - 'Id': 'actualValue'
+    'Name': 'Фактический результат команды'
+'Results':
+  - 'Verdict': 'FailNonCompliant'
+    'Reason': 'Результат выполнения команды не соответствует ожидаемому {{expectedValue}}'
+    'Instruction': 'Проверьте настройки системы или выполните необходимые корректировки для получения ожидаемого результата.'

@@ -29,7 +29,7 @@ parameters:
         displayName: "Тип скрипта"
         description: "Тип скрипта для выполнения (powershell, windows_shell)"
   
-  - name: "expectedOutput"
+  - name: "expectedValue"
     type: "text"
     required: false
     defaultValue: ""
