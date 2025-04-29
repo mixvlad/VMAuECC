@@ -1,5 +1,5 @@
 # Build stage
-FROM node:22 AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 COPY yaml-generator-frontend/package*.json ./
 RUN npm install

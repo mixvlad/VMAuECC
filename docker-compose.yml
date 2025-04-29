@@ -19,9 +19,9 @@ services:
         ENV: dev
     ports:
       - "8080:4200"
-    volumes:
-      - ./frontend/yaml-generator-frontend:/app
-      - /app/node_modules
+    # volumes:
+    #   - ./frontend/yaml-generator-frontend:/app
+    #   - /app/node_modules
     environment:
       - NODE_ENV=development
     command: npm run start:docker
