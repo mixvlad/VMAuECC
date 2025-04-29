@@ -2,7 +2,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile.dev
+      dockerfile: ./Dockerfile.dev
     ports:
       - "8283:8283"
     volumes:
@@ -14,7 +14,9 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: ./Dockerfile.dev
+      args:
+        ENV: dev
     ports:
       - "8080:4200"
     volumes:

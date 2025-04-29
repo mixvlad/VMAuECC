@@ -1,0 +1,74 @@
+name: Deploy to Yandex Cloud Serverless Containers
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: Login to Yandex Cloud Container Registry
+        uses: yc-actions/yc-cr-login@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+      
+      - name: Build and push backend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/yaml-generator-backend:latest
+      
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend/yaml-generator-frontend
+          file: ./frontend/yaml-generator-frontend/Dockerfile
+          push: true
+          tags: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/yaml-generator-frontend:latest
+          build-args: |
+            ENV=prod
+      
+      - name: Install Yandex Cloud CLI
+        run: |
+          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+          echo "$HOME/yandex-cloud/bin" >> $GITHUB_PATH
+      
+      - name: Configure Yandex Cloud CLI
+        run: |
+          echo '${{ secrets.YC_SA_JSON_CREDENTIALS }}' > sa-key.json
+          yc config profile create sa-profile
+          yc config set service-account-key sa-key.json
+          yc config set folder-id ${{ secrets.YC_FOLDER_ID }}
+      
+      - name: Deploy to Serverless Containers
+        run: |
+          # Деплой бэкенда
+          yc serverless container revision deploy \
+            --container-name yaml-generator-backend \
+            --image cr.yandex/${{ secrets.YC_REGISTRY_ID }}/yaml-generator-backend:latest \
+            --service-account-id ${{ secrets.YC_SERVICE_ACCOUNT_ID }} \
+            --cores 1 \
+            --memory 1GB \
+            --concurrency 10 \
+            --execution-timeout 30s
+          
+          # Деплой фронтенда
+          yc serverless container revision deploy \
+            --container-name yaml-generator-frontend \
+            --image cr.yandex/${{ secrets.YC_REGISTRY_ID }}/yaml-generator-frontend:latest \
+            --service-account-id ${{ secrets.YC_SERVICE_ACCOUNT_ID }} \
+            --cores 0.5 \
+            --memory 512MB \
+            --concurrency 10 \
+            --execution-timeout 30s

@@ -6,7 +6,10 @@
     "start": "ng serve",
     "start:docker": "ng serve --host 0.0.0.0 --poll 500",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "docker:dev": "docker build -t yaml-generator-frontend:dev --build-arg ENV=dev .",
+    "docker:prod": "docker build -t yaml-generator-frontend:prod --build-arg ENV=prod .",
+    "start:docker:dev": "docker run -p 4200:80 yaml-generator-frontend:dev"
   },
   "private": true,
   "dependencies": {
