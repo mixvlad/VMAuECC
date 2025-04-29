@@ -1,0 +1,16 @@
+$extractors:
+    ShellCommand:
+        $template: unix_shell
+        $command: (cd {{path}} && find . -type f -print0 | sort -z | xargs -0 {{algorithm}}sum | {{algorithm}}sum | cut -d ' ' -f1)
+
+$loaders:
+  ShellCommandLoader:
+  - $template: mapping
+    $target: OperatingSystem.UNIX.Linux.LinuxHost
+    $kind: scan
+    $origin:
+      $template: get_extractor_path
+      $name: ShellCommand
+    $field_map:
+      AdditionalProperties:
+        {{AddPropertiesName}}: $row.Data

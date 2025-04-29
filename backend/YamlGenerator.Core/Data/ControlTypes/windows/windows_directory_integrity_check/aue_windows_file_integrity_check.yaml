@@ -1,0 +1,16 @@
+$extractors:
+    PowerShellCommand:
+        $template: powershell
+        $command: Get-ChildItem -Path '{{path}}' -Recurse -File | Sort-Object FullName | ForEach-Object { Get-FileHash -Path $_.FullName -Algorithm {{algorithm}} } | ConvertTo-Json | Out-String | Get-FileHash -Algorithm {{algorithm}} | Select-Object -ExpandProperty Hash
+
+$loaders:
+  PowerShellCommandLoader:
+  - $template: mapping
+    $target: OperatingSystem.Windows.WindowsHost
+    $kind: scan
+    $origin:
+      $template: get_extractor_path
+      $name: PowerShellCommand
+    $field_map:
+      AdditionalProperties:
+        {{AddPropertiesName}}: $row.Data

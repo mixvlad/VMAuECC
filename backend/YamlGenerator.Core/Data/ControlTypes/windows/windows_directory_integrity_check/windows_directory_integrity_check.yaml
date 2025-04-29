@@ -17,32 +17,16 @@ parameters:
       ru:
         displayName: "Путь к директории"
         description: "Путь к директории, целостность которой нужно проверить"
-  - name: "recursive"
-    type: "boolean"
-    required: false
-    defaultValue: "true"
-    localization:
-      en:
-        displayName: "Recursive Check"
-        description: "Whether to check subdirectories recursively"
-      ru:
-        displayName: "Рекурсивная проверка"
-        description: "Проверять ли поддиректории рекурсивно"
-  - name: "pattern"
-    type: "string"
-    required: false
-    defaultValue: "*.exe"
-    localization:
-      en:
-        displayName: "File Pattern"
-        description: "Pattern to match files (e.g. *.exe, *.dll)"
-      ru:
-        displayName: "Шаблон файлов"
-        description: "Шаблон для сопоставления файлов (например, *.exe, *.dll)"
+ 
   - name: "algorithm"
-    type: "string"
+    type: "select"
     required: false
     defaultValue: "sha256"
+    options:
+      - "md5"
+      - "sha1"
+      - "sha256"
+      - "sha512"
     localization:
       en:
         displayName: "Hash Algorithm"

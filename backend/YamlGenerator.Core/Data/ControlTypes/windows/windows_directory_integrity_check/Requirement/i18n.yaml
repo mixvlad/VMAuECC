@@ -1,0 +1,14 @@
+'Id': 'User.{{AddPropertiesName}}'
+'Name': 'Ожидаемый хеш директории {{path}}'
+'Description': 'Ожидаемый хеш директории {{path}}'
+'Summary': 'Хеш соответствует ожидаемому'
+'Parameters':
+  - 'Id': 'expectedValue'
+    'Name': 'Ожидаемый хеш'
+'DataColumns':
+  - 'Id': 'actualValue'
+    'Name': 'Фактический хеш'
+'Results':
+  - 'Verdict': 'FailNonCompliant'
+    'Reason': 'Хэш директории {{path}} не соответствует ожидаемому {{expectedValue}}'
+    'Instruction': 'Произошли какие-то изменения на хосте, которые повлияли на контрольную сумму директории, может быть хакерской активностью.'
