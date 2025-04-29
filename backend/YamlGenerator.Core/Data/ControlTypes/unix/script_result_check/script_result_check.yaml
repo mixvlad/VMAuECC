@@ -39,7 +39,7 @@ parameters:
       ru:
         displayName: "Таймаут выполнения"
         description: "Максимальное время в секундах для ожидания выполнения скрипта"
-  - name: "expectedOutput"
+  - name: "expectedValue"
     type: "text"
     required: false
     defaultValue: ""

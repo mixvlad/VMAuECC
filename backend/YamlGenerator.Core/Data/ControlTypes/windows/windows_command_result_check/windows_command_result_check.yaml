@@ -18,16 +18,19 @@ parameters:
         displayName: "Содержимое команды"
         description: "Содержимое команды для выполнения"
   - name: "shell"
-    type: "string"
+    type: "select"
     required: false
     defaultValue: "windows_shell"
+    options:
+      - "windows_shell"
+      - "powershell"
     localization:
       en:
         displayName: "Script Type"
-        description: "The type of script to execute (powershell, windows_shell)"
+        description: "The type of script to execute"
       ru:
         displayName: "Тип скрипта"
-        description: "Тип скрипта для выполнения (powershell, windows_shell)"
+        description: "Тип скрипта для выполнения"
   
   - name: "expectedValue"
     type: "text"
@@ -40,4 +43,3 @@ parameters:
       ru:
         displayName: "Ожидаемый вывод"
         description: "Ожидаемый вывод скрипта (оставьте пустым, чтобы просто собрать вывод)"
-

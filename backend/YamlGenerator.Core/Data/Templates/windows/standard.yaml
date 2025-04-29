@@ -1,9 +1,9 @@
 Standards:
-  - Id: User.Windows123
-    Name: User Essential - Windows
+  - Id: User.Standard {{AddPropertiesName}}
+    Name: User Windows Standard {{AddPropertiesName}}
     Description: Пользовательский стандарт для Windows хостов
     Binding:
       Entity: OperatingSystem.Windows.WindowsHost
       DisplayName: '@Entity.Hostname'
     Requirements:
-      - Id: User.HashCheck
+      - Id: User.{{AddPropertiesName}}

@@ -15,6 +15,7 @@ export interface ControlTypeParameter {
   type: string;
   required: boolean;
   defaultValue: string;
+  options: string[];
 }
 
 export interface OsControlTypes {

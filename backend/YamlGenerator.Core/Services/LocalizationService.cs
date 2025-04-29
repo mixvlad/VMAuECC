@@ -113,12 +113,12 @@ namespace YamlGenerator.Core.Services
                 var deserializer = new DeserializerBuilder()
                     .WithNamingConvention(CamelCaseNamingConvention.Instance)
                     .Build();
+                var controlType = deserializer.Deserialize<ControlType>(yamlContent);
                 
-                // Deserialize the YAML content to our intermediate YamlControlType class
-                var yamlControlType = deserializer.Deserialize<YamlControlType>(yamlContent);
-
-                // Convert to our domain model ControlType
-                return yamlControlType.ToControlType(controlTypeId);
+                // Обработка после десериализации
+                controlType.ProcessAfterDeserialization(controlTypeId);
+                
+                return controlType;
             }
             catch (Exception ex)
             {

@@ -1,0 +1,9 @@
+Standards:
+  - Id: User.Standard {{AddPropertiesName}}
+    Name: User Linux Standard {{AddPropertiesName}}
+    Description: Пользовательский стандарт для Linux хостов
+    Binding:
+      Entity: OperatingSystem.UNIX.Linux.LinuxHost
+      DisplayName: '@Entity.Hostname'
+    Requirements:
+      - Id: User.{{AddPropertiesName}}

@@ -6,24 +6,10 @@ public class StandardService : BaseTemplateService
 {
     private const string StandardTemplateResource = "YamlGenerator.Core.Data.Templates.standard.yaml";
     
-    public StandardService() : base()
-    {
-    }
-    
-    public string GetStandardTemplate()
-    {
-        return LoadAssemblyFile(StandardTemplateResource);
-    }
-    
-    public string GetStandardTemplate(CollectorConfig config)
-    {
-        return LoadAssemblyFile(StandardTemplateResource, config);
-    }
-    
     public string GenerateStandard(CollectorConfig config)
     {
         // Load the standard template and process it with the provided configuration
-        return LoadAssemblyFile(StandardTemplateResource, config);
+        return LoadAssemblyFile($"YamlGenerator.Core.Data.Templates.{config.OsType}.standard.yaml", config);
     }
     
     public string DownloadStandard(CollectorConfig config)

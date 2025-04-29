@@ -74,7 +74,8 @@ public class ControlTypeService
               Description = p.Localization.TryGetValue(language, out var locDesc) ? locDesc.Description : string.Empty,
               Type = p.Type,
               Required = p.Required,
-              DefaultValue = p.DefaultValue
+              DefaultValue = p.DefaultValue,
+              Options = p.Options
           }).ToList();
 
           // Generate a unique hash (8 characters of alphanumeric)

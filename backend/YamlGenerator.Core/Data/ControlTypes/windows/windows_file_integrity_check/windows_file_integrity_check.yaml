@@ -29,9 +29,14 @@ parameters:
         displayName: "Ожидаемый хеш"
         description: "Ожидаемое значение хеша файла (оставьте пустым, чтобы просто собрать хеш)"
   - name: "algorithm"
-    type: "string"
+    type: "select"
     required: false
     defaultValue: "sha256"
+    options:
+      - "md5"
+      - "sha1"
+      - "sha256"
+      - "sha512"
     localization:
       en:
         displayName: "Hash Algorithm"

@@ -17,7 +17,7 @@ parameters:
       ru:
         displayName: "Путь к файлу"
         description: "Путь к файлу, целостность которого нужно проверить"
-  - name: "expectedHash"
+  - name: "expectedValue"
     type: "string"
     required: false
     defaultValue: ""
@@ -29,9 +29,14 @@ parameters:
         displayName: "Ожидаемый хеш"
         description: "Ожидаемое значение хеша файла (оставьте пустым, чтобы просто собрать хеш)"
   - name: "algorithm"
-    type: "string"
+    type: "select"
     required: false
     defaultValue: "sha256"
+    options:
+      - "md5"
+      - "sha1"
+      - "sha256"
+      - "sha512"
     localization:
       en:
         displayName: "Hash Algorithm"

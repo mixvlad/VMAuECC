@@ -1,0 +1,16 @@
+$extractors:
+    ShellCommand:
+        $template: unix_shell
+        $command: {{command}}
+
+$loaders:
+  ShellCommandLoader:
+  - $template: mapping
+    $target: OperatingSystem.UNIX.Linux.LinuxHost
+    $kind: scan
+    $origin:
+      $template: get_extractor_path
+      $name: ShellCommand
+    $field_map:
+      AdditionalProperties:
+        {{AddPropertiesName}}: $row.Data
